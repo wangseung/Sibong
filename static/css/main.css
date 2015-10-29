@@ -1,0 +1,190 @@
+.some_box{
+	text-align: center;
+	margin:0;
+	padding: 0;
+	}
+	.my_button{
+		display: inline-block;
+		width: auto;
+		min-width: 20%;
+		height: 100%;
+		text-align: right;
+		line-height: 1.8em;
+		margin-right: 5%;
+		vertical-align: top;
+		}
+		.my_button img{
+			margin-top: 20%;
+			max-height: 1.3em;
+
+			display: inline-block;
+		}
+		.my_button span{
+			max-height: 50%;
+			font-size: 1.3em;
+			display: inline-block;
+			color:white;
+			width: auto;
+			display: block;
+		}
+
+		#links{
+			display: inline-block;
+			padding-right: 2%;
+			padding-left: 2%;
+			width: 76%;
+			height: 84%;
+			float:left;
+
+		}
+			#links .items{
+				display: inline-block;
+				width: 100%;
+				height: 50%;
+			}
+				.title{
+					display: inline-block;
+					width: 100%;
+					height: 3em;
+					line-height: 3em;
+					font-family: '파도소리체';
+					color: white;
+
+					letter-spacing: .5em;
+				}
+					.title .title_text{
+						line-height: 2em;
+						vertical-align: bottom;
+					}
+					.title img{
+						height: 80%;
+						vertical-align: middle;
+						margin-right: 1em;
+					}
+				#links .items_list{
+					display: inline-block;
+					padding:2%;
+					width: 96%;
+					height: 65%;
+					background: white;
+
+					background-color: #89ddf9;
+					color: white;
+				}
+					#links .item{
+						display: inline-block;
+						margin-right: 1em;
+						margin-bottom: 2em;
+						width: 6em;
+						text-align: center;
+					}
+						#links .item{
+							color: white;
+						}
+						#links .item:hover{
+							cursor: pointer;
+							text-shadow: 0px 0px .2em white;
+						}
+							#links .item input{
+								display: none;
+							}
+			#links .sospi{
+				display: inline-block;
+				position: relative;
+				width: 50%;
+				height: 50%;
+				float: left;
+			}	
+				.sospi .select_box{
+					float: right;
+					display: inline-block;
+					text-align: right;
+					height: 100%;
+				}	
+				select{
+					border: .1em white solid;
+					background: #89ddf9;	
+					font-size: .8rem;
+					color: rgba(0,0,0,.8);
+					font-family: '옥션고딕_bold',sans-serif;
+				}
+
+				#links .sospi .graph_form{
+					display: inline-block;
+					position: relative;
+					width: 96%;
+					padding-left: 2%;
+					padding-right: 2%;
+					height: 75%;
+					background-color: #89ddf9;
+				}
+				#links .sospi #table_form{
+					position: absolute;
+					display: inline-block;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 0;
+					z-index: 10;
+				}
+					#links .sospi #table_form td{
+						text-align: right;
+						font-size: .8em;
+						color:white;
+					}
+					#links .sospi #table_form .x-axis{
+						height: 1em !important;
+					}
+				#links .sospi .graph_form #sospiGraph{
+					display: inline-block;
+					position: absolute;
+					right: 0;
+					top: 0;
+					margin-top: 1rem;
+					margin-right: 1rem;
+					width: 90%;
+					height: 85%;
+					background: rgba(255,255,255,.5);
+
+					z-index: 11;
+
+				}
+			#links .news{
+				display: inline-block;
+				padding-left : 2%;
+				width: 48%;
+				height: 50%;
+				float: right;
+			}
+				#links .news .title a{
+					letter-spacing: 0px;
+					font-family: '옥션고딕_light';
+					text-decoration: none;
+					color: white;
+					float:right;
+				}
+				#links .news .title a:hover{
+					text-shadow: 0px 0px .1em white;
+				}
+
+				#links .news .news_view{
+					display: inline-block;
+					background-color: #89ddf9;
+					width: 100%;
+					height: 75%;
+				}
+		#rank{
+			display: inline-block;
+			width: 16%;
+			padding-right: 2%;
+			padding-left: 2%;
+			height: 84%;
+			float: right;
+		}
+			#rank .rank_list{
+				display: inline-block;
+				width: 100%;
+				height: 87.5%;
+				background-color: #89ddf9;
+
+			}

@@ -1,0 +1,22 @@
+@font-face{
+	font-family: "파도소리체";
+	src: url('../fonts/a파도소리.woff'), url('../fonts/a파도소리.ttf');
+}
+@font-face{
+	font-family: "옥션고딕_light";
+	src: url('../fonts/AuctionGothic_Light.ttf');
+}
+@font-face{
+	font-family: "옥션고딕_medium";
+	src: url('../fonts/AuctionGothic_Medium.ttf');
+}
+@font-face{
+	font-family: "옥션고딕_bold";
+	src: url('../fonts/AuctionGothic_Bold.ttf');
+}
+
+@media (max-width:900px){html{font-size:14px;}}
+@media (min-width:901px) and (max-width:1024px){html{font-size:14px;}}
+@media (min-width:1025px) and (max-width:1330px){html{font-size:16px;}}
+@media (min-width:1331px) and (max-width:1800px){html{font-size:19px;}}
+@media (min-width:1801px){html{font-size:22px;}}

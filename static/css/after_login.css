@@ -1,0 +1,63 @@
+
+	.welcome{
+		display: inline-block;
+
+		width: 120%;
+		height: 20%;
+
+		margin-top: -5%;
+
+		vertical-align: middle;
+
+
+	}
+		.welcome img{
+			display: inline-block;
+			vertical-align: middle;
+			height: 60%;
+			max-width: 30%;
+			width: auto;
+
+			margin : 0;
+
+		}
+		.welcome .welcome_text{
+			display: inline-block;
+
+			font-family: "파도소리체";
+			font-size: 1.2em;
+
+			width: 70%;
+			height: 100%;
+			color: white;
+			
+			letter-spacing: .2rem;
+
+			vertical-align: top;
+
+			text-align: left;
+
+			padding-top: .8em;
+			padding-left: .8em;
+
+			text-shadow: 2px 2px .8em rgba(0,0,0,.2);
+		}
+
+	.link{
+		width: 100%;
+		height: auto;
+
+		margin-top: 5%;
+	}
+		.link img{
+			width: 28%;
+
+			box-shadow: 3px 3px 10px rgba(0,0,0,.2);
+		}
+		.link img:hover{
+			box-shadow: -3px -3px 3px rgba(0,0,0,.2);			
+		}
+		.link img:nth-child(1){
+			margin-left: 2%;
+			margin-right: 2%;
+		}

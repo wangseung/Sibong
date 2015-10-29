@@ -1,0 +1,56 @@
+form{
+	width: 100%;
+	height: auto;
+	margin-top: 2rem;
+}
+	form .inputs{
+		display: inline-block;
+
+		width: 50%;
+		height: 2rem;
+
+		margin-bottom: 1rem;
+
+		background-image: url('../images/input_background.png');
+		background-repeat: repeat-x;
+		background-size: 100% 100%;
+		background-position: center;
+	}
+		form .inputs input{
+			width: 90%;
+			height: 1.4rem;
+			font-size: 1em;
+			border: none;
+			color: white;
+
+			letter-spacing: .2em;
+			background-color: #3cc6f4;
+
+		}
+
+		form .inputs input::-webkit-input-placeholder{
+			color: white;
+			letter-spacing: .2em;
+		}
+		form .inputs input:-moz-placeholder{
+			color: white;
+			letter-spacing: .2em;
+		}
+
+	form .login_btn{
+		display: inline-block;
+		width: 25%;
+		height: auto;
+	}
+		form .login_btn input{
+			display: none;
+		}
+		form .login_btn label{
+			width: 100%;
+			height: auto;
+		}
+			form .login_btn label img{
+				width: 100%;
+				height: auto;
+			}
+

@@ -1,0 +1,60 @@
+article,aside,canvas,details,figcaption,figure, footer,header,hgroup,menu,nav,section,summary { 
+    display:block;
+}
+html,body{
+	width: 100%;
+	height :100%;
+	margin:0;
+	padding:0;
+
+	min-width: 900px;
+	min-height: 600px;
+
+	background: #3cc6f4;
+}
+
+wrap{
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	display: -o-flex;
+
+  -webkit-align-items: center;
+ 	  -ms-align-items: center;
+ 	   -o-align-items: center;
+ 	 -moz-align-items: center;
+          align-items: center;
+
+  -webkit-justify-content: center;
+	  -ms-justify-content: center;
+	   -o-justify-content: center;
+	 -moz-justify-content: center;
+          justify-content: center;
+
+}
+
+container{
+	display: inline-block;
+
+
+	text-align: center;
+}
+	#box{
+		display: inline-block;
+		width: 50%;
+		height: 100%;
+
+	}
+	.mainlogo{
+		display: inline-block;
+		width: 80%;
+
+		margin-top:15%;
+	}
+		.mainlogo img{
+			width :100%
+		}
