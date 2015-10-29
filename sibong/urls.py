@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^login/$', 'common.views.login'),
     url(r'^after_login/$', 'common.views.after_login'),
     url(r'^logout/$', 'common.views.logout'),
-
+    url(r'^get_graph_data/$', 'common.views.get_graph_data'),
+    url(r'^get_items/$', 'common.views.get_items'),
+    url(r'^main/$', 'common.views.main'),
 
 ]
