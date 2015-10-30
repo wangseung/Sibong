@@ -65,4 +65,8 @@ def get_graph_data(request):
 
 
 def main(request):
-    return render(request, 'main.html')
+    users = dict()
+    clubs = dict()
+    users['users'] = UserProfile.objects.all().order_by('created_at')
+    return render(request, 'main.html', users)
+
