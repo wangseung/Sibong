@@ -5,32 +5,6 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 # Create your views here.
 
 from common.models import UserProfile
-print("aaac")
-
-def register(request):
-    results = {}
-    if request.method == 'POST':
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-
-        try:
-            user = UserProfile.objects.create(username=username)
-            user.set_password(password)
-            user.save()
-            return redirect('/login/')
-        except :
-            results['error'] = 'Already used!'
-
-        #if UserProfile.objects.filter(username=username).exists():
-        #    results['error'] = 'Already used!'
-        #else:
-        #    user = UserProfile.objects.create(username=username)
-        #    user.set_password(password)
-        #    user.save()
-        #    return redirect('/login/')
-
-
-    return render(request, '.html', results)
 
 def login(request):
     results = {}
@@ -58,15 +32,13 @@ def logout(request):
     auth_logout(request)
     return redirect('/login/')
 def get_items(request):
-    return HttpResponse('[{"item":"1111"},{"item":"2222"},{"item":"3333"},{"item":"4444"},{"item":"5555"},{"item":"6666"},{"item":"7777"},{"item":"8888"},{"item":"9999"},{"item":"101010"},{"item":"111111"}]',content_type='application/json')
+    return HttpResponse('[{"item":"Layer7"},{"item":"BFD"},{"item":"Nefuse"},{"item":"Unifox"}]',content_type='application/json')
 def get_graph_data(request):
-    return HttpResponse('[100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000,100,200,300,400,500,600,700,800,900,1000]',content_type='application/json')
-
-
+    return HttpResponse('[20,19,20,21,24,23,20,17,14,13,9,12,15,19,20,25,28,30]',content_type='application/json')
+def get_news(request):
+    return HttpResponse('[{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"}]', content_type='application/json')
+def get_rank(request):
+    return HttpResponse('[{"item":"NEFUS"},{"item":"layer"},{"item":"uni"},{"item":"team"},{"item":"focus"},{"item":"asd"},{"item":"NEFUS"},{"item":"NEFUS"},{"item":"NEFUS"},{"item":"NEFUS"}]', content_type='application/json')
 
 def main(request):
-    users = dict()
-    clubs = dict()
-    users['users'] = UserProfile.objects.all().order_by('created_at')
-    return render(request, 'main.html', users)
-
+    return render(request, 'main.html')

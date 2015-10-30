@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^get_graph_data/$', 'common.views.get_graph_data'),
     url(r'^get_items/$', 'common.views.get_items'),
     url(r'^main/$', 'common.views.main'),
-
+    url(r'^get_rank/$', 'common.views.get_rank'),
+    url(r'^get_news/$', 'common.views.get_news'),
 ]

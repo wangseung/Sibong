@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TEMPLATES_DIRS = (
-    os.path.join(BASE_DIR, "static/templates/"),
+    os.path.join(BASE_DIR, "/templates/"),
 )
 print(BASE_DIR,TEMPLATES_DIRS)
 
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'sibong.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "static/templates")],
+        'DIRS': [os.path.join(BASE_DIR, "static/../templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

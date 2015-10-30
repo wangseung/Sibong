@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-{% load staticfiles %}                  <!--이거 꼭 써줫-->
+﻿{% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset = "utf-8"/>
@@ -8,10 +8,9 @@
 	<meta name="description" content="시봉: 선린 동아리 모의투자 서비스" />
 	
 	<title>시봉:동아리 모의투자</title>
-<link rel = "stylesheet" type = "text/css" href = "{% static 'css/index.css' %} "/>
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/index.css' %}"/>
 <link rel = "stylesheet" type = "text/css" href = "{% static 'css/start_pages.css' %}" />
 <link rel = "stylesheet" type = "text/css" href = "{% static 'css/font.css' %}"/>
-
 <!--mediaquery start-->
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <!--mediaquery end-->
@@ -58,7 +57,6 @@ function resizing(){
 </script>
 </head>
 <body>
-
 {% if request.user.is_anonymous %}
 
 <wrap>

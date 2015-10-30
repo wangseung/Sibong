@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-{% load staticfiles %}
+﻿{% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset = "utf-8"/>
@@ -7,7 +7,7 @@
 	<title>시봉: 동아리 모의투자</title>
 	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/font.css' %}" />
 	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/default.css' %}"/>
-    <link rel = "stylesheet" type = "text/css" href = "{% static 'css/main.css' %}"/>
+	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/main.css' %}"/>
 <!--mediaquery start-->
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <!--mediaquery end-->
@@ -15,7 +15,7 @@
 < script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 < ![endif]-->
 <!--[if lte IE 7]>
-< script src="js/IE8.js"></script>
+< script src="{% static 'js/IE8.js' %}"></script>
 <![endif]-->
 <!-- script start -->
 <script type="text/javascript" src = "{% static 'js/main/main_routine.js' %}"></script>
@@ -28,12 +28,12 @@
 <wrap>
 	<header>
 		<div class = "logo_box">
-			<a href = "main.html"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
+			<a href = "/main/"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
 		</div>
 		<div class = "some_box">
 			<img src = "{% static 'images/main/sibong.png' %}" alt = "시봉이"/>
-			<div class = "my_button">
-				<img id = "logout" src = "{% static 'images/main/logout.png' %}"/>
+            <div class = "my_button">
+				<a href = "/logout/"><img id = "logout" src = "{% static 'images/main/logout.png' %}"/></a>
 				<span>마이페이지</span>
 			</div>
 		</div>
@@ -57,25 +57,26 @@
 			<div class = 'graph_form'>
 				<table id = "table_form">
 					<tr>
-						<td class = "y_cell">400 -</td>
+						<td class = "y_cell"></td>
 					</tr>
 					<tr>
-						<td class = "y_cell">300 -</td>
+						<td class = "y_cell"></td>
 					</tr>
 					<tr>
-						<td class = "y_cell">200 -</td>
+						<td class = "y_cell"></td>
 					</tr>
 					<tr>
-						<td class = "y_cell">100 -</td>
+						<td class = "y_cell"></td>
 					</tr>
 					<tr>
-						<td class = "y_cell">0 -</td>
+						<td class = "y_cell"></td>
 					</tr>
 					<tr class = "x-axis">
-						<td class = "x_cell">0</td><td class = "x_cell">1</td><td class = "x_cell">2</td><td class = "x_cell">3</td><td class = "x_cell">4</td>
+						<td class = "x_cell"></td><td class = "x_cell"></td><td class = "x_cell"></td><td class = "x_cell"></td><td class = "x_cell"></td>
 					</tr>						
 				</table>
-				<div id="sospiGraph"></div>
+				<div id="sospiGraph" class = "graph_" ></div>
+				<div id="sospiGraph_1" class = "graph_" ></div>
 			</div>
 		</div>
 		<div class = "news">
@@ -91,9 +92,7 @@
 	<div id = "rank">
 		<span class = "title"><img src = "{% static 'images/main/crown.png' %}" alt = "랭킹입니다" /><span class = "title_text">종목랭킹</span></span>
 		<div class = "rank_list">
-        {% for user in users %}
-            {{ user.username }} </br>
-        {% endfor %}
+			
 		</div>
 	</div>
 </wrap>

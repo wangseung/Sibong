@@ -40,7 +40,8 @@
 			#links .items{
 				display: inline-block;
 				width: 100%;
-				height: 50%;
+				height: 30%;
+				margin-bottom: 2em;
 			}
 				.title{
 					display: inline-block;
@@ -92,7 +93,7 @@
 				display: inline-block;
 				position: relative;
 				width: 50%;
-				height: 50%;
+				height: 65%;
 				float: left;
 			}	
 				.sospi .select_box{
@@ -107,7 +108,7 @@
 					font-size: .8rem;
 					color: rgba(0,0,0,.8);
 					font-family: '옥션고딕_bold',sans-serif;
-				}
+				}	
 
 				#links .sospi .graph_form{
 					display: inline-block;
@@ -135,7 +136,7 @@
 					#links .sospi #table_form .x-axis{
 						height: 1em !important;
 					}
-				#links .sospi .graph_form #sospiGraph{
+				#links .sospi .graph_form .graph_{
 					display: inline-block;
 					position: absolute;
 					right: 0;
@@ -145,7 +146,6 @@
 					width: 90%;
 					height: 85%;
 					background: rgba(255,255,255,.5);
-
 					z-index: 11;
 
 				}
@@ -153,7 +153,7 @@
 				display: inline-block;
 				padding-left : 2%;
 				width: 48%;
-				height: 50%;
+				height: 70%;
 				float: right;
 			}
 				#links .news .title a{
@@ -170,9 +170,74 @@
 				#links .news .news_view{
 					display: inline-block;
 					background-color: #89ddf9;
-					width: 100%;
+					padding-left : 2%;
+					padding-right: 2%;
+					width: 96%;
 					height: 75%;
+
+					overflow-y: scroll; 
 				}
+					#links .news .news_view .news_box{
+						display: inline-block;
+						margin-top: 1em;
+						margin-bottom: .5em;
+						width: 100%;
+						height: 4em;
+					}
+					#links .news .news_view .news_box .megaphone_img{
+						position: relative;
+						width: 15%;
+						height: 100%;
+						margin:0;
+						float: left;
+					}
+						.megaphone_img img{
+							position: absolute;
+							top:0;
+							right: 0;
+							margin-right: 10%;
+							max-height: 70%;
+						}
+					#links .news .news_view .news_box .news_text{
+						display: flex;
+						display: -webkit-flex;
+						display: -ms-flex;
+						display: -moz-flex;
+						display: -o-flex;
+
+					  -webkit-align-items: center;
+					 	  -ms-align-items: center;
+					 	   -o-align-items: center;
+					 	 -moz-align-items: center;
+					          align-items: center;
+
+					  -webkit-justify-content: center;
+						  -ms-justify-content: center;
+						   -o-justify-content: center;
+						 -moz-justify-content: center;
+					          justify-content: center;
+
+						width: 80%;
+						height: 100%;
+
+						color: white;
+						border: .15em white solid;
+						border-radius: .3em;
+					}	
+						.news_text font{
+							display: inline-block;
+							width: 80%;
+							height: 60%;
+
+						}
+						.news_text p{
+							width: 100%;
+							height: 100%;
+							font-size: .8em;
+							font-family: "옥션고딕_light";
+							overflow-y: auto;
+						}
+
 		#rank{
 			display: inline-block;
 			width: 16%;
@@ -180,11 +245,49 @@
 			padding-left: 2%;
 			height: 84%;
 			float: right;
+
 		}
 			#rank .rank_list{
 				display: inline-block;
-				width: 100%;
+				padding-left: 5%;
+				padding-right: 5%;
+				padding-top: .5em;
+				width: 90%;
 				height: 87.5%;
 				background-color: #89ddf9;
+				overflow-y: auto; 
 
 			}
+				#rank .rank_list .rank{
+					display: inline-block;
+					width: 100%;
+					height: 3em;
+					font-size: 1em;
+					color: white;
+				}
+					#rank .rank_list .rank .grade{
+						display: inline-block;
+						width: 20%;
+						height: 100%;
+						text-align: center;
+						line-height: 3em;
+
+					}
+					.grade span{
+						vertical-align: middle;
+						font-family: '파도소리체';
+						font-weight: bold;
+					}
+					#rank .rank_list .rank .item_name{
+						display: inline-block;
+						width: 70%;
+						height: 100%;
+
+						text-align: center;
+						line-height: 3em;
+
+					}
+					.item_name span{
+						vertical-align: middle;
+						font-family: '옥션고딕_light';
+					}
