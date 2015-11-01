@@ -201,8 +201,8 @@ function first_start_graph(temp_array){
 
 function do_logout(){
 	var form_temp = document.createElement("form");
-	form_temp.action = "/logout/";
-	form_temp.method = "";
+	form_temp.action = "/logout";
+	form_temp.method = "POST";
 	form_temp.style.display = "none";
 
 	document.body.appendChild(form_temp);
@@ -252,7 +252,7 @@ function get_news(news_array_temp){
 		var out = "";
 		out += "\
 			<span class = 'megaphone_img'>\
-				<img src = '../images/main/megaphone.png' />\
+				<img src = \"/static/images/main/megaphone.png\" />\
 			</span>\
 			<span class = 'news_text'>\
 				<font title = '"+temp[i].content+"'><p>\"\
