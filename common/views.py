@@ -15,7 +15,7 @@ def login(request):
         password = request.POST.get('password', '')
         user = auth.authenticate(username=username, password=password)
         if UserProfile.objects.filter(username=username).exists() is not True:
-            user_create = UserProfile.objects.create(username=username,usermoney=10000000,havestock='')
+            user_create = UserProfile.objects.create(username=username,usermoney=10000000)
             user_create.set_password(password)
             user_create.save()
             results['error'] = "Success Register.\nPlease login"

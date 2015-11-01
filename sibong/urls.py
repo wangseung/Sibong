@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^sospi/$', 'common.views.sospi'),
     url(r'^stock_item/$', 'common.views.stock_item'),
     url(r'^get_daily_data/$', 'common.views.get_daily_data'),
+    url(r'^', 'common.views.login')
 ]
