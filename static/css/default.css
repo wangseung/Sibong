@@ -73,3 +73,42 @@ header{
 		header .some_box img:hover{
 			cursor: pointer;
 		}
+
+		.some_box{
+	text-align: center;
+	margin:0;
+	padding: 0;
+	}
+	.my_button{
+		display: inline-block;
+		width: auto;
+		min-width: 20%;
+		height: 100%;
+		text-align: right;
+		line-height: 1.8em;
+		margin-right: 5%;
+		vertical-align: top;
+		}
+		.my_button img{
+			margin-top: 20%;
+			max-height: 1.3em;
+
+			display: inline-block;
+		}
+		.my_button span{
+			max-height: 50%;
+			font-size: 1.3em;
+			display: inline-block;
+			color:white;
+			width: auto;
+			display: block;
+
+		}
+		.my_button a{
+			text-decoration: none;
+		}
+		.my_button span:hover{
+			text-decoration: none;
+
+			text-shadow: 0px 0px .1em white;
+		}

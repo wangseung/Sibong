@@ -1,9 +1,7 @@
-function make(){
+﻿function make(){
 	make_ingre();
-	ajax_get_items();
-	ajax_get_news();
-	ajax_get_rank();
 	ajax_get_graph_data();
+	ajax_get_daily_data();
 }
 
 
@@ -15,11 +13,6 @@ var logout;
 
 var some_box;
 
-var links;
-
-var items;
-var items_list;
-var item;
 
 var sospi;
 var data_term;
@@ -32,11 +25,7 @@ var table_row;
 var table_cell;
 
 
-var news;
-var news_view;
-
-var rank;
-var rank_list;
+var lists;
 
 function make_ingre(){
 	logout = document.getElementById("logout");
@@ -44,11 +33,6 @@ function make_ingre(){
 	header = document.getElementsByTagName("header")[0];
 	wrap = document.getElementsByTagName("wrap")[0];
 
-	links = document.getElementById("links");
-
-	items = document.getElementsByClassName("items")[0];
-	items_list = document.getElementsByClassName("items_list")[0];
-	item = document.getElementsByClassName("item");
 
 	some_box = document.getElementsByClassName("some_box")[0];
 	sospi = document.getElementsByClassName("sospi")[0];
@@ -63,23 +47,14 @@ function make_ingre(){
 	table_row = document.getElementsByClassName("y_cell");
 	table_cell = document.getElementsByClassName("x_cell");
 
-	news = document.getElementsByClassName("news")[0];
-	news_view = document.getElementsByClassName("news_view")[0];
-
-	rank = document.getElementById("rank");
-	rank_list = document.getElementsByClassName("rank_list")[0];
+	lists = document.getElementsByClassName("lists")[0];
 
 	page_layout();
 }
 function page_layout(){
 	some_box.style.lineHeight = some_box.offsetHeight + "px";
 
-	links.style.height= wrap.offsetHeight - header.offsetHeight + "px"; 
 	
-
-	news.style.height = sospi.offsetHeight + "px";
-	rank.style.height = news.offsetHeight + items.offsetHeight + "px";
-
 	sospiGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(sospiGraph,true).marginTop) + "px";
 	sospiGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(sospiGraph,true).marginRight) + "px";
 	sospiGraph_1.style.width = sospiGraph.offsetWidth + "px";
@@ -100,9 +75,6 @@ function page_layout(){
 
 function set_event(){
 	logout.addEventListener("click",do_logout);
-	for( var i = 0 ; i < item.length; i++){
-		item[i].addEventListener("click", link);
-	}
 	term.addEventListener("change",ajax_get_graph_data);
 }
 
@@ -201,8 +173,8 @@ function first_start_graph(temp_array){
 
 function do_logout(){
 	var form_temp = document.createElement("form");
-	form_temp.action = "/logout/";
-	form_temp.method = "";
+	form_temp.action = "/logout";
+	form_temp.method = "POST";
 	form_temp.style.display = "none";
 
 	document.body.appendChild(form_temp);
@@ -210,86 +182,6 @@ function do_logout(){
 		form_temp.submit();
 	}
 }
-
-function link(){
-	var form_temp = document.createElement("form");
-	form_temp.action = "/link_by_code";
-	form_temp.method = "POST";
-
-	var out = "";
-	out += "<input name = 'code' type = 'button' value = '"+this.children.namedItem('item_code').value+"' />";
-
-	form_temp.innerHTML = out;
-
-	form_temp.submit();
-}
-
-
-function get_items(item_array_temp){
-	var temp = JSON.parse(item_array_temp);
-
-	for(var i = 0 ; i < temp.length;i ++){
-
-		var div_temp = document.createElement("div");
-		div_temp.className = "item";
-		var out = "";
-		out += temp[i].item+"<input id = 'item_code' value = '"+temp[i].item+"' />";
-
-		div_temp.innerHTML = out;
-
-		items_list.appendChild(div_temp);
-	}
-
-	make_ingre();
-}
-
-function get_news(news_array_temp){
-	var temp = JSON.parse(news_array_temp);
-	for(var i = 0 ; i < temp.length; i++){
-		var div_temp = document.createElement("div");
-		div_temp.className = "news_box"
-
-		var out = "";
-		out += "\
-			<span class = 'megaphone_img'>\
-				<img src = '../images/main/megaphone.png' />\
-			</span>\
-			<span class = 'news_text'>\
-				<font title = '"+temp[i].content+"'><p>\"\
-				"+temp[i].content+"\
-				\"</p></font>\
-			</span>\
-		";
-		div_temp.innerHTML = out;
-
-		news_view.appendChild(div_temp);
-	}
-
-}
-
-function get_rank(rank_array_temp){
-	var temp = JSON.parse(rank_array_temp);
-	for( var i = 0 ; i < temp.length; i++){
-		var div_temp = document.createElement("div");
-		div_temp.className = "rank"
-		var out = "";
-		out += "\
-			<div class = 'rank'>\
-				<span class = 'grade'>\
-					<span>"+i+".</span>\
-				</span>\
-				<span class = 'item_name'>\
-					<span>"+temp[i].item+"</span>\
-				</span>\
-			</div>\
-		";
-
-		div_temp.innerHTML = out;
-
-		rank_list.appendChild(div_temp);
-	}
-}
-
 
 function setting_table(max){
 	var max_temp = max;
@@ -306,5 +198,32 @@ function setting_table(max){
 		for(var i = 0 ; i < table_cell.length; i++){
 			table_cell[i].innerHTML = i * 42 + "h";
 		}
+	}
+}
+
+function get_daily_data(daily_data_temp){
+	var temp = JSON.parse(daily_data_temp);
+
+	for(var i = 0 ; i < temp.length ; i++){
+		var div_temp = document.createElement("div");
+		div_temp.className = "list";
+
+		var out = "";
+		out += "<span class = 'date'>"+temp[i].date+"</span>";
+		out += "<span class = 'price'>"+temp[i].price+"</span>";
+		if(temp[i].plus_minus == 1){
+
+			out += "<span class = 'fluctuation_rate'><span class = 'plus_minus' style = 'color: red;'>"+"+"+"</span>"+temp[i].percent+"%</span>";
+		}
+		else if(temp[i].plus_minus == 0){
+			out += "<span class = 'fluctuation_rate'><span class = 'plus_minus'>"+"&nbsp"+"</span>"+temp[i].percent+"%</span>";
+		}
+		else if(temp[i].plus_minus == -1){
+			out += "<span class = 'fluctuation_rate'><span class = 'plus_minus' style = 'color: blue;'>"+"-"+"</span>"+temp[i].percent+"%</span>";
+		}
+
+		div_temp.innerHTML = out;
+
+		lists.appendChild(div_temp);
 	}
 }

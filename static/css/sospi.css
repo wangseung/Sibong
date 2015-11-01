@@ -1,0 +1,167 @@
+
+				.title{
+					display: inline-block;
+					width: 100%;
+					height: 3em;
+					line-height: 3em;
+					font-family: '파도소리체';
+					color: white;
+					
+					letter-spacing: .5rem;	
+				}
+				.long{
+					letter-spacing: 0;
+				}
+					.title .title_text{
+						line-height: 2em;
+					font-family: '파도소리체';
+						vertical-align: bottom;
+					}
+					.title img{
+						height: 80%;
+						vertical-align: middle;
+						margin-right: 1em;
+					}
+				 .items_list{
+					display: inline-block;
+					padding:2%;
+					width: 96%;
+					height: 65%;
+					background: white;
+
+					background-color: #89ddf9;
+					color: white;
+				}
+					 .item{
+						display: inline-block;
+						margin-right: 1em;
+						margin-bottom: 2em;
+						width: 6em;
+						text-align: center;
+					}
+						 .item{
+							color: white;
+						}
+						 .item:hover{
+							cursor: pointer;
+							text-shadow: 0px 0px .2em white;
+						}
+							 .item input{
+								display: none;
+							}
+			 .sospi{
+			 	margin-left: 3%;
+				display: inline-block;
+				position: relative;
+				width: 60%;
+				height: 80%;
+				float: left;
+			}	
+				.sospi .select_box{
+					float: right;
+					display: inline-block;
+					text-align: right;
+					height: 100%;
+				}	
+				select{
+					border: .1em white solid;
+					background: #89ddf9;	
+					font-size: .8rem;
+					color: rgba(0,0,0,.8);
+					font-family: '옥션고딕_bold',sans-serif;
+				}	
+
+				 .sospi .graph_form{
+					display: inline-block;
+					position: relative;
+					width: 96%;
+					padding-left: 2%;
+					padding-right: 2%;
+					height: 85%;
+					background-color: #89ddf9;
+				}
+				 .sospi #table_form{
+					position: absolute;
+					display: inline-block;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 0;
+					z-index: 10;
+				}
+					 .sospi #table_form td{
+						text-align: right;
+						font-size: .8em;
+						color:white;
+					}
+					 .sospi #table_form .x-axis{
+						height: 1em !important;
+					}
+				 .sospi .graph_form .graph_{
+					display: inline-block;
+					position: absolute;
+					right: 0;
+					top: 0;
+					margin-top: 1rem;
+					margin-right: 1rem;
+					width: 90%;
+					height: 85%;
+					background: rgba(255,255,255,.5);
+					z-index: 11;
+
+				}
+
+		.daily_data{
+			display: inline-block;
+			padding-left: 5%;
+			width: 30%;	
+			height: 80%;	
+		}
+			.daily_data .lists{
+				display: inline-block;
+				width: 100%;
+				height: 90%;
+
+				overflow-y : auto;
+			}
+				.daily_data .lists .list{
+					display: inline-block;
+					width: 90%;
+					height: 3rem;
+					line-height: 3rem;
+					background: #89ddf9;
+					margin-top: .5rem;
+					border-radius: .5rem;
+
+				}
+					.daily_data .lists .list span{
+						height: 100%;
+						display: inline-block;
+						text-align: center;
+
+						font-size: 1.1rem;
+					}
+					.daily_data .lists .list .date{
+						display: inline-block;
+						width: 20%;
+						font-family: '파도소리체';
+						background: #a1e3f9;
+						border-radius: .5rem 0px 0px .5rem;
+
+						color: white;
+					}
+					.daily_data .lists .list .price{
+						width: 50%;
+						color: white;
+						font-family: '옥션고딕_light';
+					}
+					.daily_data .lists .list .fluctuation_rate{
+						width: 25%;
+						color: white;
+					}
+						.daily_data .lists .list .fluctuation_rate .plus_minus{
+							display: inline-block;
+							height: 100%;
+							font-family: '옥션고딕_light';
+							letter-spacing: .3rem;
+						}
