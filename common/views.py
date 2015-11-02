@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect, render_to_response
 from django.contrib import auth
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.views.decorators.csrf import csrf_exempt
+import random
 # Create your views here.
 
 from common.models import UserProfile, HaveStock, News, Stock
@@ -68,27 +69,32 @@ def get_graph_data(request):
 
 @csrf_exempt
 def get_news(request):
-    news = News.objects.all()
+    stocks = list(Stock.objects.all())
+    news = list(News.objects.all())
     newslist = list()
-    for i in news:
-        newslist.append(dict(content=str(i.content)))
+    for i in range(0, 5):
+        rand_stock = random.choice(stocks)
+        rand_news = random.choice(news)
+        newslist.append(dict(content=str(rand_stock.StockItem+" "+rand_news.content)))
+        var_price = int(rand_stock.StockPrice + rand_news.variation * 100000)
+        s = Stock.objects.filter(StockItem=str(rand_stock.StockItem))
+        Stock.objects.filter(StockItem=s[0].StockItem).update(StockPrice=var_price)
     send_newslist = str(newslist).replace(chr(39),chr(34))
-    print(send_newslist)
     return HttpResponse(send_newslist, content_type='application/json')
 
 
 @csrf_exempt
 def get_rank(request):
-    profiles = UserProfile.objects.all().order_by('-usermoney')
-    users = []
-    for i in profiles:
-        users.append(dict(item=str(i)))
-    senduserlist = str(users).replace(chr(39),chr(34))
-    return HttpResponse(senduserlist , content_type='application/json')
+    stocks = Stock.objects.all().order_by('-StockPrice')
+    stocklist = []
+    for i in stocks:
+        stocklist.append(dict(item=str(i.StockItem)))
+    send_stocklist = str(stocklist).replace(chr(39),chr(34))
+    return HttpResponse(send_stocklist , content_type='application/json')
 
 @csrf_exempt
 def get_daily_data(request):
-    return HttpResponse('[{"date":"10\/13","price":"35,e","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"33","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
+    return HttpResponse('[{"date":"10\/13","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"33","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
 
 
 def buystock(request):
@@ -110,14 +116,10 @@ def after_deal(request):
 def deal(request):
     return render(request, 'deal.html')
 
-def mypage(request):
-    return render(request, 'mypage.html')
-
 def main(request):
     data = request.POST.get('data', '')
     print(request.is_ajax())
 
     #if request.method == 'GET':
     print(data)
-    print("aaaa")
     return render(request, 'main.html')

@@ -33,6 +33,5 @@ urlpatterns = [
     #url(r'^', 'common.views.login'),
     url(r'^after_deal/$', 'common.views.after_deal'),
     url(r'^deal/$', 'common.views.deal'),
-    url(r'^mypage/$', 'common.views.mypage'),
-
+    url(r'^mypage/', include('mypage.urls')),
 ]

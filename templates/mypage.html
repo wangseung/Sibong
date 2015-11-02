@@ -28,7 +28,7 @@
 <wrap>
 	<header>
 		<div class = "logo_box">
-			<a href = "after_login.html"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
+			<a href = "/after_login/"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
 		</div>
 		<div class = "name_bar">
 			'{{ request.user.username }}'님
@@ -45,7 +45,7 @@
 		<div class = "account">
 			<span class = 'title long'>
 				<img src = "{% static 'images/mypage/people.png' %}" alt = "선린피"/>
-				<span class = "title_text">'테스터' 님의 계좌</span>
+				<span class = "title_text">'{{ request.user.username }}' 님의 계좌</span>
 			</span>
 			<div class = "account_pad">
 				<table class = "first_row">
@@ -69,7 +69,7 @@
 				<div class = "profit_pad">
 					<div>
 						<span>현재 보유 자산은</span>
-						<span class = "value"></span>
+						<span class = "value">{{ request.user.usermoney }}</span>
 					</div>
 				</div>
 			</div>

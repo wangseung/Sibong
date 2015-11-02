@@ -13,7 +13,7 @@ function ajax_get_account(){
 
 function ajax_get_value(){
 	var temp = new XMLHttpRequest();
-	temp.open("post","../js/mypage/get_value.php");
+	temp.open("post","/mypage/get_value/");
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_value(temp.responseText);
@@ -37,7 +37,7 @@ function ajax_get_earn(){
 function ajax_get_rank(){
 	var temp = new XMLHttpRequest();
 
-	temp.open("post","../js/mypage/get_rank.php");
+	temp.open("post","/mypage/get_rank/");
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_rank(temp.responseText);

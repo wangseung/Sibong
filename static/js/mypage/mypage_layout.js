@@ -86,9 +86,10 @@ function get_account(accout_array_temp){
 
 function get_value(value_data_temp){
 	var temp = JSON.parse(value_data_temp);
-
-	var out = "<strong>"+ temp.value + "원</strong> 입니다.";
-
+	var out = "";
+	for(var i = 0 ; i < temp.length; i++) {
+		out += "<strong>" + temp[i].value + "원</strong> 입니다.";
+	}
 	document.getElementsByClassName("value")[0].innerHTML = out;
 }
 
