@@ -1,0 +1,62 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8"/>
+
+	<title>시봉: 동아리 모의투자</title>
+	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/font.css' %}" />
+	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/default.css' %}"/>
+	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/deal.css' %}"/>
+<!--mediaquery start-->
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<!--mediaquery end-->
+<!--[if lt IE 9]>
+< script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+< ![endif]-->
+<!--[if lte IE 7]>
+< script src="{% static 'js/IE8.js' %}"></script>
+<![endif]-->
+<!-- script start -->
+<script type="text/javascript" src = "{% static 'js/deal/deal_routine.js' %}"></script>
+<script type="text/javascript" src = "{% static 'js/deal/deal_layout.js' %}"></script>
+<script type="text/javascript" src = "{% static 'js/deal/deal_ajax.js' %}"></script>
+<!-- script end -->
+</head>
+<body>
+<wrap>
+	<header>
+		<div class = "logo_box">
+			<a href = "after_login.html"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
+		</div>
+		<div class = "some_box">
+			<img src = "{% static 'images/main/sibong.png' %}" alt = "시봉이"/>
+			<div class = "my_button">
+				<a href = "/logout/"><img id = "logout" src = "{% static 'images/main/logout.png' %}"/></a>
+				<a href = "/mypage/"><span>마이페이지</span></a>
+			</div>
+		</div>
+	</header>
+	<form action = "/deal/" method = "POST">
+		<input type ="radio" class = "radios" id = "mado" value = "mado" name = "which" checked/>
+		<input type ="radio" class = "radios" id = "masu" value = "masu" name = "which" />
+		<div class = "type_box">
+			<label class = "num0 type" for = "mado">매도</label><label class = "num1 type" for = "masu">매수</label>
+		</div>
+		<div class = "inputs">
+			<div>
+				<span class = "sub">종목 선택</span>
+				<select id = "items" name = "item">
+
+				</select>
+				<span class = "sub">주 선택</span>
+				<input id = "many" type = "text" name = "how_many" placeholder = "주 " />
+			</div>
+		</div>
+		<div class = "img_box">
+			<img src = "{% static 'images/deal/jomun.png' %}" alt = "주문하기" onclick = "submit_check()"/>
+		</div>
+	</form>
+</wrap>
+</body>
+</html>

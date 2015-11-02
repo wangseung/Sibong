@@ -19,14 +19,14 @@
 					width: 100%;
 					height: 3em;
 					line-height: 3em;
-					font-family: '파도소리체';
+					font-family: "a파도소리";
 					color: white;
 
 					letter-spacing: .5em;
 				}
 					.title .title_text{
 						line-height: 2em;
-					font-family: '파도소리체';
+					font-family: "a파도소리";
 						vertical-align: bottom;
 					}
 					.title img{
@@ -247,7 +247,7 @@
 					}
 					.grade span{
 						vertical-align: middle;
-						font-family: '파도소리체';
+						font-family: 'a파도소리';
 						font-weight: bold;
 					}
 					#rank .rank_list .rank .item_name{

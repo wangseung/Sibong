@@ -185,8 +185,8 @@ function first_start_graph(temp_array){
 
 	var data_length;
 
-	VJ.graph("sospiGraph", temp, {max:max_value, width:sospiGraph.offsetWidth, height:sospiGraph.offsetHeight, dataLength:48 });
-	VJ.graph("sospiGraph_1", temp, {max:max_value, width:sospiGraph.offsetWidth, height:sospiGraph.offsetHeight, dataLength:336 });
+	VJ.graph("sospiGraph", [0,0,0], {max:max_value, width:sospiGraph.offsetWidth, height:sospiGraph.offsetHeight, dataLength:48 });
+	VJ.graph("sospiGraph_1", [0,0,0], {max:max_value, width:sospiGraph.offsetWidth, height:sospiGraph.offsetHeight, dataLength:336 });
 
 	if( term.value == "day"){
 		sospiGraph.style.zIndex = "10";
@@ -242,7 +242,6 @@ function get_items(item_array_temp){
 
 	make_ingre();
 }
-
 function get_news(news_array_temp){
 	var temp = JSON.parse(news_array_temp);
 	for(var i = 0 ; i < temp.length; i++){
@@ -252,7 +251,7 @@ function get_news(news_array_temp){
 		var out = "";
 		out += "\
 			<span class = 'megaphone_img'>\
-				<img src = \"/static/images/main/megaphone.png\" />\
+				<img src = '/static/images/main/megaphone.png' alt = '뉴스'/>\
 			</span>\
 			<span class = 'news_text'>\
 				<font title = '"+temp[i].content+"'><p>\"\
@@ -276,7 +275,7 @@ function get_rank(rank_array_temp){
 		out += "\
 			<div class = 'rank'>\
 				<span class = 'grade'>\
-					<span>"+i+".</span>\
+					<span>"+(i+1)+".</span>\
 				</span>\
 				<span class = 'item_name'>\
 					<span>"+temp[i].item+"</span>\

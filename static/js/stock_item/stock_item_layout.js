@@ -1,7 +1,8 @@
-﻿function make(){
+function make(){
 	make_ingre();
 	ajax_get_graph_data();
-	ajax_get_daily_data();
+	ajax_get_price_data();
+	ajax_get_news();
 }
 
 
@@ -11,19 +12,18 @@ var wrap;
 
 var logout;
 
+var name_bar;
 var some_box;
-
 
 var sospi;
 var data_term;
 
 var graph_form;
-var sospiGraph;
-var sospiGraph_1;
+var stock_item_graphGraph;
+var stock_item_graphGraph_1;
 var table_form;
 var table_row;
 var table_cell;
-
 
 var lists;
 
@@ -34,6 +34,8 @@ function make_ingre(){
 	wrap = document.getElementsByTagName("wrap")[0];
 
 
+	name_bar = document.getElementsByClassName("name_bar")[0];
+
 	some_box = document.getElementsByClassName("some_box")[0];
 	sospi = document.getElementsByClassName("sospi")[0];
 	term = document.getElementById("term");
@@ -41,8 +43,8 @@ function make_ingre(){
 
 
 	graph_form = document.getElementsByClassName("graph_form")[0];
-	sospiGraph = document.getElementById("sospiGraph");
-	sospiGraph_1 = document.getElementById("sospiGraph_1");
+	stock_item_graphGraph = document.getElementById("stock_item_graphGraph");
+	stock_item_graphGraph_1 = document.getElementById("stock_item_graphGraph_1");
 	table_form = document.getElementById("table_form");
 	table_row = document.getElementsByClassName("y_cell");
 	table_cell = document.getElementsByClassName("x_cell");
@@ -53,22 +55,22 @@ function make_ingre(){
 }
 function page_layout(){
 	some_box.style.lineHeight = some_box.offsetHeight + "px";
-
+	name_bar.style.lineHeight = name_bar.offsetHeight + "px";
 	
-	sospiGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(sospiGraph,true).marginTop) + "px";
-	sospiGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(sospiGraph,true).marginRight) + "px";
-	sospiGraph_1.style.width = sospiGraph.offsetWidth + "px";
-	sospiGraph_1.style.height = sospiGraph.offsetHeight + "px";
+	stock_item_graphGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(stock_item_graphGraph,true).marginTop) + "px";
+	stock_item_graphGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(stock_item_graphGraph,true).marginRight) + "px";
+	stock_item_graphGraph_1.style.width = stock_item_graphGraph.offsetWidth + "px";
+	stock_item_graphGraph_1.style.height = stock_item_graphGraph.offsetHeight + "px";
 	for( var i = 0 ; i < table_row.length ; i++){
 		table_row[i].style.height = table_form.offsetHeight / 6 + "px";
 	}
 	for( var i = 1 ; i < table_cell.length ; i++){
-		table_cell[i].style.width = sospiGraph.offsetWidth / 4 + "px";
+		table_cell[i].style.width = stock_item_graphGraph.offsetWidth / 4 + "px";
 	}
 
 	
 	document.styleSheets[0].removeRule("canvas",0);
-	document.styleSheets[0].addRule("canvas" , "display : inline-block !important; width:"+ sospiGraph.offsetWidth + "px ; height :"+sospiGraph.offsetHeight+ "px ;",0);
+	document.styleSheets[0].addRule("canvas" , "display : inline-block !important; width:"+ stock_item_graphGraph.offsetWidth + "px ; height :"+stock_item_graphGraph.offsetHeight+ "px ;",0);
 
 	set_event();
 }
@@ -108,19 +110,19 @@ function start_graph(data_temp){
 	var data_length;
 
 	if( term.value == "day"){
-		sospiGraph.style.zIndex = "10";
-		sospiGraph_1.style.zIndex = "-1";
-		VJ.graph("sospiGraph").options.max = max_value;
+		stock_item_graphGraph.style.zIndex = "10";
+		stock_item_graphGraph_1.style.zIndex = "-1";
+		VJ.graph("stock_item_graphGraph").options.max = max_value;
 		for (var i = 0 ; i < temp.length ; i++){
-			VJ.graph("sospiGraph").appendData([temp[i]]);
+			VJ.graph("stock_item_graphGraph").appendData([temp[i]]);
 		}
 	}
 	else if(term.value == "week"){
-		sospiGraph_1.style.zIndex = "10";
-		sospiGraph.style.zIndex = "-1";
-		VJ.graph("sospiGraph_1").options.max = max_value;
+		stock_item_graphGraph_1.style.zIndex = "10";
+		stock_item_graphGraph.style.zIndex = "-1";
+		VJ.graph("stock_item_graphGraph_1").options.max = max_value;
 		for (var i = 0 ; i < temp.length ; i++){
-			VJ.graph("sospiGraph_1").appendData([temp[i]]);
+			VJ.graph("stock_item_graphGraph_1").appendData([temp[i]]);
 		}
 	}
 
@@ -157,16 +159,16 @@ function first_start_graph(temp_array){
 
 	var data_length;
 
-	VJ.graph("sospiGraph", [0,0,0], {max:max_value, width:sospiGraph.offsetWidth, height:sospiGraph.offsetHeight, dataLength:48 });
-	VJ.graph("sospiGraph_1", [0,0,0], {max:max_value, width:sospiGraph.offsetWidth, height:sospiGraph.offsetHeight, dataLength:336 });
+	VJ.graph("stock_item_graphGraph", [0,0,0], {max:max_value, width:stock_item_graphGraph.offsetWidth, height:stock_item_graphGraph.offsetHeight, dataLength:48 });
+	VJ.graph("stock_item_graphGraph_1", [0,0,0], {max:max_value, width:stock_item_graphGraph.offsetWidth, height:stock_item_graphGraph.offsetHeight, dataLength:336 });
 
 	if( term.value == "day"){
-		sospiGraph.style.zIndex = "10";
-		sospiGraph_1.style.zIndex = "-1";
+		stock_item_graphGraph.style.zIndex = "10";
+		stock_item_graphGraph_1.style.zIndex = "-1";
 	}
 	else if(term.value == "week"){
-		sospiGraph_1.style.zIndex = "10";
-		sospiGraph.style.zIndex = "-1";
+		stock_item_graphGraph_1.style.zIndex = "10";
+		stock_item_graphGraph.style.zIndex = "-1";
 	}
 	check = 0;
 }
@@ -201,26 +203,47 @@ function setting_table(max){
 	}
 }
 
-function get_daily_data(daily_data_temp){
-	var temp = JSON.parse(daily_data_temp);
 
-	for(var i = 0 ; i < temp.length ; i++){
+function get_price_data(price_data_temp){
+	var temp = JSON.parse(price_data_temp);
+
+	var out = "";
+
+	if(temp.up_down == 1){
+		out += "<img src = '"+temp.img+"' alt = '전일 대비 상승'/>";
+	}
+	else if(temp.up_down == 0){
+		out += "<img src = '"+temp.img+"' alt = '전일과 동일'/>";
+	}
+	else if(temp.up_down == -1){
+		out += "<img src = '"+temp.img+"' alt = '전일 대비 하락'/>";
+	}
+
+	out += "<span class = 'value' >"+temp.value+"</span>";
+
+	if(temp.up_down == 1){
+		out += "<span class = 'up_down'><span style = color:blue>+</span>"+temp.percent+"%</span>";
+	}
+	else if(temp.up_down == 0){
+		out += "<span class = 'up_down'>"+temp.percent+"%</span>";
+	}
+	else if(temp.up_down == -1){
+		out += "<span class = 'up_down'><span style = color:red>-</span>"+temp.percent+"%</span>";
+	}
+
+	document.getElementsByClassName("price_data")[0].innerHTML = out;
+}
+
+function get_news(news_array_temp){
+	var temp = JSON.parse(news_array_temp);
+	
+	for(var i = 0 ; i < temp.length;i++){
 		var div_temp = document.createElement("div");
 		div_temp.className = "list";
 
 		var out = "";
-		out += "<span class = 'date'>"+temp[i].date+"</span>";
-		out += "<span class = 'price'>"+temp[i].price+"</span>";
-		if(temp[i].plus_minus == 1){
-
-			out += "<span class = 'fluctuation_rate'><span class = 'plus_minus' style = 'color: red;'>"+"+"+"</span>"+temp[i].percent+"%</span>";
-		}
-		else if(temp[i].plus_minus == 0){
-			out += "<span class = 'fluctuation_rate'><span class = 'plus_minus'>"+"&nbsp"+"</span>"+temp[i].percent+"%</span>";
-		}
-		else if(temp[i].plus_minus == -1){
-			out += "<span class = 'fluctuation_rate'><span class = 'plus_minus' style = 'color: blue;'>"+"-"+"</span>"+temp[i].percent+"%</span>";
-		}
+		out += "<span>"+temp[i].content+"</span>";
+		out += "<img src = '"+temp[i].img+"' alt = '최근 뉴스' />";
 
 		div_temp.innerHTML = out;
 
