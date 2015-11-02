@@ -68,9 +68,13 @@ def get_graph_data(request):
 
 @csrf_exempt
 def get_news(request):
-
     news = News.objects.all()
-    return HttpResponse('[{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"}]', content_type='application/json')
+    newslist = list()
+    for i in news:
+        newslist.append(dict(content=str(i.content)))
+    send_newslist = str(newslist).replace(chr(39),chr(34))
+    print(send_newslist)
+    return HttpResponse(send_newslist, content_type='application/json')
 
 
 @csrf_exempt
