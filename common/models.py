@@ -17,11 +17,11 @@ class HaveStock(models.Model):
 
 
 class Stock(models.Model):
-    StockItem = models.CharField(max_length=30)
+    StockItem = models.CharField(max_length=30,unique=True)
     StockPrice = models.IntegerField()
 
+
 class News(models.Model):
-    clubname = models.CharField(max_length=30)
     content = models.CharField(max_length=2048)
     variation = models.IntegerField()
 

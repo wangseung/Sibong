@@ -46,7 +46,14 @@ def stock_item(request):
 
 @csrf_exempt
 def get_items(request):
-    return HttpResponse('[{"item":"Layer7"},{"item":"BFD"},{"item":"Focus"},{"item":"Nefuse"},{"item":"Unifox"}]',content_type='application/json')
+    stock_list=[]
+    stocks = Stock.objects.all()
+    for i in range(len(stocks)):
+        stock_list.append(dict(item=str(stocks[i].StockItem)))
+    send_stock_list = str(stock_list).replace(chr(39),chr(34))
+    return HttpResponse(send_stock_list ,content_type='application/json')
+
+
 @csrf_exempt
 def get_graph_data(request):
     data = []
@@ -57,24 +64,28 @@ def get_graph_data(request):
         for i in range(1,337):
             data.append(i)
     return HttpResponse(str(data), content_type='application/json')
+
+
 @csrf_exempt
 def get_news(request):
+
+    news = News.objects.all()
     return HttpResponse('[{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"},{"content":"속보입니다.속보 속보요 속보"}]', content_type='application/json')
+
+
 @csrf_exempt
 def get_rank(request):
     profiles = UserProfile.objects.all().order_by('-usermoney')
-    usernames = []
-    for i in profiles:
-        usernames.append(str(i))
-    user = dict()
     users = []
-    for i in usernames:
+    for i in profiles:
         users.append(dict(item=str(i)))
     senduserlist = str(users).replace(chr(39),chr(34))
     return HttpResponse(senduserlist , content_type='application/json')
+
 @csrf_exempt
 def get_daily_data(request):
     return HttpResponse('[{"date":"10\/13","price":"35,e","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"33","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
+
 
 def buystock(request):
     count = 5
@@ -89,7 +100,14 @@ def sellallstock(requeset):
     return True
 
 
+def after_deal(request):
+    return render(request, 'after_deal.html')
 
+def deal(request):
+    return render(request, 'deal.html')
+
+def mypage(request):
+    return render(request, 'mypage.html')
 
 def main(request):
     data = request.POST.get('data', '')
