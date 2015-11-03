@@ -15,6 +15,10 @@ def get_rank(request):
     send_userlist = str(userlist).replace(chr(39),chr(34))
     return HttpResponse(send_userlist , content_type='application/json')
 
+def get_value(request):
+    send_value = list()
+    return HttpResponse(send_value, content_type='application/json')
+
 
 
 def index(request):

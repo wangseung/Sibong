@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^sospi/$', 'common.views.sospi'),
     url(r'^stock_item/$', 'common.views.stock_item'),
     url(r'^get_daily_data/$', 'common.views.get_daily_data'),
-    #url(r'^', 'common.views.login'),
+    url(r'^$', 'common.views.login'),
     url(r'^after_deal/$', 'common.views.after_deal'),
     url(r'^deal/$', 'common.views.deal'),
     url(r'^mypage/', include('mypage.urls')),
