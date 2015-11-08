@@ -1,0 +1,206 @@
+
+				.title{
+
+					font-family: "a파도소리";
+					
+					display: inline-block;
+					width: 100%;
+					height: 3em;
+					line-height: 3em;
+					color: white;
+					
+					letter-spacing: .5rem;	
+				}
+				.long{
+					letter-spacing: .2rem;
+				}
+					.title .title_text{
+						line-height: 2em;
+						font-family: : "a파도소리";
+						vertical-align: bottom;
+					}
+					.title img{
+						height: 80%;
+						vertical-align: middle;
+						margin-right: 1em;
+					}
+
+				.name_bar{
+					display: inline-block;
+					position: absolute;
+					top: 0;
+
+					width: 50%;
+					height: 15%;
+					margin-left: -25%;
+					
+					color: white;
+					font-size: 1.5em;
+					
+					letter-spacing: .5rem;
+					
+					font-family: "a파도소리";
+					text-align: center;
+				}
+
+		#left{
+			float: left;
+			padding-left: 5%;
+			padding-right: 5%;
+			width: 60%;
+			height: 80%;
+		}
+			 .stock_item_graph{
+				display: inline-block;
+				position: relative;
+				width: 100%;
+				height: 50%;
+				float: left;
+			}	
+				.stock_item_graph .select_box{
+					float: right;
+					display: inline-block;
+					text-align: right;
+					height: 100%;
+				}	
+				select{
+					border: .1em white solid;
+					background: #89ddf9;	
+					font-size: .8rem;
+					color: rgba(0,0,0,.8);
+					font-family: '옥션고딕_bold',sans-serif;
+				}	
+
+				 .stock_item_graph .graph_form{
+					display: inline-block;
+					position: relative;
+					width: 96%;
+					padding-left: 2%;
+					padding-right: 2%;
+					height: 85%;
+					background-color: #89ddf9;
+				}
+				 .stock_item_graph #table_form{
+					position: absolute;
+					display: inline-block;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 0;
+					z-index: 10;
+				}
+					 .stock_item_graph #table_form td{
+						text-align: right;
+						font-size: .8em;
+						color:white;
+					}
+					 .stock_item_graph #table_form .x-axis{
+						height: 1em !important;
+					}
+				 .stock_item_graph .graph_form .graph_{
+					display: inline-block;
+					position: absolute;
+					right: 0;
+					top: 0;
+					margin-top: 1rem;
+					margin-right: 1rem;
+					width: 90%;
+					height: 85%;
+					background: rgba(255,255,255,.5);
+					z-index: 11;
+
+				}
+			.price{
+				display: inline-block;
+				position: relative;
+				width: 100%;
+				height: 50%;
+			}
+				.price_pad{
+					display: flex;
+					display: -webkit-flex;
+					display: -ms-flex;
+					display: -moz-flex;
+					display: -o-flex;
+
+					-webkit-align-items: center;
+					-ms-align-items: center;
+					-o-align-items: center;
+					-moz-align-items: center;
+					align-items: center;
+
+					-webkit-justify-content: center;
+					-ms-justify-content: center;
+					-o-justify-content: center;
+					-moz-justify-content: center;
+					justify-content: center;
+					position: absolute;
+					width: 100%;
+					height: 75%;
+					background: #89ddf9;
+				}
+					.price_pad div{
+						width: 96%;
+						height: 6rem;
+						line-height: 6rem;
+					}
+						.price_pad div img{
+							display: inline-block;
+							height: 90%;
+						}
+						.price_pad div .value{
+							color: white;
+							display: inline-block;
+							font-size: 5rem;
+							width: 60%;
+							font-family: "옥션고딕_light";
+							vertical-align: top;
+						}
+						.price_pad div .up_down{
+							display: inline-block;
+							width:15%;
+							vertical-align: bottom;
+							font-size:2em;
+						}
+		#right{
+			float: right;
+			padding-right: 3%; 
+			width: 27%;
+			height: 80%;
+		}	
+			.news{
+				display: inline-block;
+				padding-left: 5%;
+				padding-right: 5%;
+				width: 90%;
+				height: 90%;
+				background: #89ddf9;
+			}
+				.lists{
+					display: inline-block;
+					width: 100%;
+					height: 100%;
+					padding-right: 5%;
+					overflow-y : auto;
+				}
+					.list{
+						position: relative;
+						margin-top: 1rem;
+						width: 90%;
+						height: auto;
+						color: white;
+						padding: 5%;
+						padding-bottom: 3rem;
+						border-radius: .5rem;
+						background: #a1e3f9;
+
+					}
+						.list span{
+							word-break:break-all;
+						}
+						.list img{
+							position: absolute;
+							bottom: 0;
+							right: 0;
+							height: 3rem;
+						}

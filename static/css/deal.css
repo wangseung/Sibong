@@ -1,0 +1,139 @@
+form{
+	width: 100%;
+	height: 100%;
+}
+.radios{
+	display: none;
+}
+
+.type_box{
+	margin-top: 2rem;
+	width:95%;
+	padding-left: 5%; 
+
+	border-bottom: .1em white solid;
+}
+
+	.type{
+		display: inline-block;
+		height: 2rem;
+		width: 5rem;
+		text-align: center;
+		line-height: 2rem;
+
+		border: .2rem white solid;
+		border-bottom: 0px;
+		border-radius: .2rem .2rem 0px 0px;
+
+		color: white;
+		background:  #3cc6f4;
+
+		transition : .2s;
+		-webkit-transition : .2s;
+		-moz-transition : .2s;
+		-ms-transition : .2s;
+		-o-transition : .2s;
+	}
+	.type:hover{
+		cursor:pointer;
+	}
+
+	#mado:checked ~ .type_box .num0,
+	#masu:checked ~ .type_box .num1{
+		display: inline-block;
+		background: white;
+		color: #3cc6f4;
+	}
+
+	.inputs{
+		display: flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: -moz-flex;
+		display: -o-flex;
+
+	  -webkit-align-items: center;
+	 	  -ms-align-items: center;
+	 	   -o-align-items: center;
+	 	 -moz-align-items: center;
+	          align-items: center;
+
+	  -webkit-justify-content: center;
+		  -ms-justify-content: center;
+		   -o-justify-content: center;
+		 -moz-justify-content: center;
+	          justify-content: center;
+		width: 100%;
+		height: 50%;
+		text-align: center;
+	}
+		.inputs div{
+			width: 50%;
+			height: auto;
+		}	
+
+			.inputs div .sub{
+				display: inline-block;
+				width: 50%;
+				text-align: left;
+				color: white;
+				height: 3rem;
+				line-height: 3rem;
+				font-family: "a파도소리";
+			}
+			.inputs div .sub:after{
+				content:"";
+				display: block;
+			}
+			.inputs div select{
+				display: inline-block;
+				width: 50%;
+				height: 2rem;
+				background: #89ddf9;
+
+				border: none;
+				color: white;
+				font-family: "a파도소리";
+				font-size: 1.1rem;
+				letter-spacing: .2rem;
+			}
+			.inputs div #many{
+				display: inline-block;
+				width: 50%;
+				height: 2rem;
+				text-align: right;
+				font-family: "a파도소리";
+				font-size: 1.3rem;
+
+				color: white;
+				border:none;
+				background: #89ddf9;
+			}
+			#many::-webkit-input-placeholder {
+ 			  color: white;
+			}
+
+			#many:-moz-placeholder { /* Firefox 18- */
+			   color: white;  
+			}
+
+			::-moz-placeholder {  /* Firefox 19+ */
+			   color: white;  
+			}
+
+			#many:-ms-input-placeholder {  
+			   color: white;  
+			}
+		form .img_box{
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+		}
+			form .img_box img{
+				width: auto;
+				display: inline-block;
+				height: 5rem;
+			}	
+			form .img_box img:hover{
+				cursor: pointer;
+			}
