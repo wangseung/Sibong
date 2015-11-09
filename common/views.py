@@ -1,13 +1,15 @@
+import random
+import time
+
 from django.db import IntegrityError
 from django.shortcuts import render, HttpResponse, redirect, render_to_response
 from django.contrib import auth
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.views.decorators.csrf import csrf_exempt
-import random
+
 # Create your views here.
 
-from common.models import UserProfile, HaveStock, News, Stock
-import simplejson as json
+from common.models import UserProfile, HaveStock, News, Stock, Newslist
 
 def login(request):
 
@@ -69,17 +71,11 @@ def get_graph_data(request):
 
 @csrf_exempt
 def get_news(request):
-    stocks = list(Stock.objects.all())
-    news = list(News.objects.all())
-    newslist = list()
-    for i in range(0, 5):
-        rand_stock = random.choice(stocks)
-        rand_news = random.choice(news)
-        newslist.append(dict(content=str(rand_stock.StockItem+" "+rand_news.content)))
-        var_price = int(rand_stock.StockPrice + rand_news.variation * 100000)
-        s = Stock.objects.filter(StockItem=str(rand_stock.StockItem))
-        Stock.objects.filter(StockItem=s[0].StockItem).update(StockPrice=var_price)
-    send_newslist = str(newslist).replace(chr(39),chr(34))
+    newslist = Newslist.objects.all().order_by('id')[:5]
+    send_newslist = []
+    for i in newslist:
+        send_newslist.append(dict(content=str(i.content)))
+    send_newslist = str(send_newslist).replace(chr(39),chr(34))
     return HttpResponse(send_newslist, content_type='application/json')
 
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'common',
 )
 
@@ -119,3 +120,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     #'/Users/wangseunghyeon/Desktop/_/sibong/static/',
 )
+
+CRONJOBS = [
+    ('*/30 * * * *', 'common.cron.add_news')
+]

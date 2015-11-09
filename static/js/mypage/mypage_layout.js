@@ -20,7 +20,6 @@ var name_bar;
 var first_row;
 var more_row;
 
-var deal_link;
 
 var lists;
 
@@ -34,7 +33,6 @@ function make_ingre(){
 
 	first_row = document.getElementsByClassName("first_row")[0];
 	more_row = document.getElementsByClassName("more_row")[0];
-	deal_link = document.getElementsByClassName("deal_link")[0];
 	lists = document.getElementsByClassName("lists")[0];
 
 	page_layout();
@@ -42,7 +40,6 @@ function make_ingre(){
 function page_layout(){
 	some_box.style.lineHeight = some_box.offsetHeight + "px";
 	name_bar.style.lineHeight = name_bar.offsetHeight + "px";
-	deal_link.style.lineHeight = deal_link.offsetHeight + "px";
 	set_event();
 }
 
@@ -86,10 +83,9 @@ function get_account(accout_array_temp){
 
 function get_value(value_data_temp){
 	var temp = JSON.parse(value_data_temp);
-	var out = "";
-	for(var i = 0 ; i < temp.length; i++) {
-		out += "<strong>" + temp[i].value + "원</strong> 입니다.";
-	}
+
+	var out = "<strong>"+ temp.value + "원</strong> 입니다.";
+
 	document.getElementsByClassName("value")[0].innerHTML = out;
 }
 

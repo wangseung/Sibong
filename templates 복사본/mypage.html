@@ -1,0 +1,104 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8"/>
+
+	<title>시봉:동아리 모의투자</title>
+<link rel ="stylesheet" type = "text/css" href = "{% static 'css/font.css' %}"/>
+<link rel ="stylesheet" type = "text/css" href = "{% static 'css/default.css' %}"/>
+<link rel ="stylesheet" type = "text/css" href = "{% static 'css/mypage.css' %}"/>
+
+<!--mediaquery start-->
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<!--mediaquery end-->
+<!--[if lt IE 9]>
+< script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+< ![endif]-->
+<!--[if lte IE 7]>
+< script src="{% static 'js/IE8.js' %}"></script>
+<![endif]-->
+<!-- script start -->
+<script type="text/javascript" src = "{% static 'js/mypage/mypage_routine.js' %}"></script>
+<script type="text/javascript" src = "{% static 'js/mypage/mypage_layout.js' %}"></script>
+<script type ="text/javascript" src ="{% static 'js/mypage/mypage_ajax.js' %}"></script>
+<!-- script end -->
+</head>
+<body>
+<wrap>
+	<header>
+		<div class = "logo_box">
+			<a href = "/after_login/"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
+		</div>
+		<div class = "name_bar">
+			'{{ request.user.username }}'님
+		</div>
+		<div class = "some_box">
+			<img src = "{% static 'images/main/sibong.png' %}" alt = "시봉이"/>
+			<div class = "my_button">
+				<a href = "/logout/"><img id = "logout" src = "{% static 'images/main/logout.png' %}"/></a>
+				<a href = "/mypage/"><span>마이페이지</span></a>
+			</div>
+		</div>
+	</header>
+	<div id = "links">
+		<div class = "account">
+			<span class = 'title long'>
+				<img src = "{% static 'images/mypage/people.png' %}" alt = "선린피"/>
+				<span class = "title_text">'{{ request.user.username }}' 님의 계좌</span>
+			</span>
+			<div class = "account_pad">
+				<table class = "first_row">
+					<tr>
+						<th>종목명</th><th>매입가</th><th>평가손익</th><th>현재가</th><th>보유</th>
+					</tr>
+				</table>
+				<table class = "more_row">
+					<tr>
+						<th>종목명</th><th>매입가</th><th>평가손익</th><th>현재가</th><th>보유</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class = "histories">
+			<div class = "profit">
+				<span class = 'title'>
+					<img src = "{% static 'images/mypage/dongjun.png' %}" alt = "선린피"/>
+					<span class = "title_text">총손익률</span>
+				</span>
+				<div class = "profit_pad">
+					<div>
+						<span>현재 보유 자산은</span>
+						<span class = "value">{{ request.user.usermoney }}</span>
+					</div>
+				</div>
+			</div>
+			<div class = "earning">
+				<span class = 'title'>
+					<img src = "{% static 'images/mypage/saessak.png' %}" alt = "선린피"/>
+					<span class = "title_text">총수익률</span>
+				</span>
+				<div class = "earning_pad">
+					<div>
+						<span>전일 자금 대비</span>
+						<span class = "earn"></span>
+					</div>
+				</div>
+			</div>
+			<div class = "deal_link">
+				<a href = "/deal/"><img src = "{% static 'images/mypage/deal_link.png' %}" alt = "매수 매도 페이지 바로가기"/>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div id ="rank">
+		<span class = 'title long'>
+			<img src = "{% static 'images/mypage/crown.png' %}" alt = "선린피"/>
+			<span class = "title_text">자본금 = {{ request.user.usermoney }}</span>
+		</span>
+		<div class = "lists">
+		</div>
+	</div>
+</wrap>
+</body>
+</html>

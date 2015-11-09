@@ -1,11 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-# Create your models here.
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.utils import timezone
 
 
-
-class UserProfile(AbstractUser,models.Model):
-    usermoney = models.IntegerField()
+class UserProfile(AbstractUser):
+    usermoney = models.IntegerField(null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
@@ -25,6 +24,8 @@ class News(models.Model):
     content = models.CharField(max_length=2048)
     variation = models.IntegerField()
 
+class Newslist(models.Model):
+    content = models.CharField(max_length=2048)
 
 
 #stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1),mystock='layer7',count=5)

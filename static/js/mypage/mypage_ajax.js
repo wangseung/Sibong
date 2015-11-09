@@ -1,7 +1,7 @@
 function ajax_get_account(){
 	var temp = new XMLHttpRequest();
 
-	temp.open("post","../js/mypage/get_account.php");
+	temp.open("post","/get_account/");
 
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
@@ -13,7 +13,7 @@ function ajax_get_account(){
 
 function ajax_get_value(){
 	var temp = new XMLHttpRequest();
-	temp.open("post","/mypage/get_value/");
+	temp.open("post","/get_value/");
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_value(temp.responseText);
@@ -24,7 +24,7 @@ function ajax_get_value(){
 function ajax_get_earn(){
 	var temp = new XMLHttpRequest();
 
-	temp.open("post","../js/mypage/get_earn.php");
+	temp.open("post","/get_earn/");
 
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
@@ -37,7 +37,7 @@ function ajax_get_earn(){
 function ajax_get_rank(){
 	var temp = new XMLHttpRequest();
 
-	temp.open("post","/mypage/get_rank/");
+	temp.open("post","/get_rank/");
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_rank(temp.responseText);

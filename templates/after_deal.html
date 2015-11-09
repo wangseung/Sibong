@@ -1,13 +1,12 @@
-﻿{% load staticfiles %}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<meta charset = "utf-8"/>
 
 	<title>시봉: 동아리 모의투자</title>
-	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/font.css' %}" />
-	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/default.css' %}"/>
-	<link rel = "stylesheet" type = "text/css" href = "{% static 'css/after_deal.css' %}"/>
+	<link rel = "stylesheet" type = "text/css" href = "/static/css/font.css" />
+	<link rel = "stylesheet" type = "text/css" href = "/static/css/default.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "/static/css/after_deal.css"/>
 <!--mediaquery start-->
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <!--mediaquery end-->
@@ -15,29 +14,29 @@
 < script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 < ![endif]-->
 <!--[if lte IE 7]>
-< script src="{% static 'js/IE8.js' %}"></script>
+< script src="js/IE8.js"></script>
 <![endif]-->
 <!-- script start -->
-<script type="text/javascript" src = "{% static 'js/after_deal/after_deal_routine.js' %}"></script>
-<script type="text/javascript" src = "{% static 'js/after_deal/after_deal_layout.js' %}"></script>
+<script type="text/javascript" src = "/static/js/after_deal/after_deal_routine.js"></script>
+<script type="text/javascript" src = "/static/js/after_deal/after_deal_layout.js"></script>
 <!-- script end -->
 </head>
 <body>
 <wrap>
 	<header>
 		<div class = "logo_box">
-			<a href = "/after_login/"><img src = "{% static 'images/main/main_logo.png' %}" alt = "메인로고입니다"/></a>
+			<a href = "/after_login/"><img src = "/static/images/main/main_logo.png" alt = "메인로고입니다"/></a>
 		</div>
 		<div class = "some_box">
-			<img src = "{% static 'images/main/sibong.png' %}" alt = "시봉이"/>
+			<img src = "/static/images/main/sibong.png" alt = "시봉이"/>
 			<div class = "my_button">
-				<a href = "/logout/"><img id = "logout" src = "{% static 'images/main/logout.png' %}"/></a>
+				<img id = "logout" src = "/static/images/main/logout.png"/>
 				<a href = "/mypage/"><span>마이페이지</span></a>
 			</div>
 		</div>
 	</header>
 	<div class = "text_box">
-		<img src = "{% static 'images/smiling_sibong.png' %}"><span>완료하였습니다!<br/>감사합니다!</span>
+		<img src = "/static/images/smiling_sibong.png"><span>완료하였습니다!<br/>감사합니다!</span>
 	</div>
 </wrap>
 </body>

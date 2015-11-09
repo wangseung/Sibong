@@ -15,13 +15,13 @@ function ajax_get_graph_data(){
 		}
 	}
 
-	temp.open('POST','../js/main/get_graph_data.php');
+	temp.open('POST','/get_graph_data/');
 	temp.send(data);
 }
 
 function ajax_get_price_data(){
 	var temp = new XMLHttpRequest();
-	temp.open("post","../js/stock_item/get_price_data.php");
+	temp.open("post","/get_price_data/");
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_price_data(temp.responseText);
@@ -32,7 +32,7 @@ function ajax_get_price_data(){
 
 function ajax_get_news(){
 	var temp = new XMLHttpRequest();
-	temp.open("post","../js/stock_item/get_news.php");
+	temp.open("post","/get_news/");
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_news(temp.responseText);
