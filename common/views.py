@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-from common.models import UserProfile, HaveStock, News, Stock, Newslist
+from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi
 
 def login(request):
 
@@ -60,18 +60,29 @@ def get_items(request):
 @csrf_exempt
 def get_graph_data(request):
     data = []
+    s = Sospi.objects.all().order_by('-id')
     if request.POST.get('data') == 'day':
-        for i in range(1,50):
-            data.append(i)
+        for i in s[:48]:
+            data.append(i.data)
     elif request.POST.get('data') == 'week':
-        for i in range(1,337):
-            data.append(i)
+        for i in s[:336]:
+            data.append(i.data)
+    data.reverse()
     return HttpResponse(str(data), content_type='application/json')
 
 
 @csrf_exempt
 def get_news(request):
-    newslist = Newslist.objects.all().order_by('id')[:5]
+    newslist = Newslist.objects.all().order_by('-id')[:5]
+    send_newslist = []
+    for i in newslist:
+        send_newslist.append(dict(content=str(i.content)))
+    send_newslist = str(send_newslist).replace(chr(39),chr(34))
+    return HttpResponse(send_newslist, content_type='application/json')
+
+@csrf_exempt
+def get_more_news(request):
+    newslist = Newslist.objects.all().order_by('-id')
     send_newslist = []
     for i in newslist:
         send_newslist.append(dict(content=str(i.content)))

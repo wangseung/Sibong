@@ -27,6 +27,8 @@ class News(models.Model):
 class Newslist(models.Model):
     content = models.CharField(max_length=2048)
 
+class Sospi(models.Model):
+    data = models.IntegerField()
 
 #stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1),mystock='layer7',count=5)
 #user = UserProfile.objects.create(username='admin',usermoney=999999999999)

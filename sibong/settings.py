@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIRS = (
     os.path.join(BASE_DIR, "/templates/"),
 )
-print(BASE_DIR,TEMPLATES_DIRS)
+#print(BASE_DIR,TEMPLATES_DIRS)
 
 
 # Quick-start development settings - unsuitable for production
@@ -111,7 +111,6 @@ STATIC_URL = '/static/'
 STATIC_DIRS = (
     os.path.join(BASE_DIR, "static/"),
 )
-print(STATIC_DIRS)
 
 
 AUTH_USER_MODEL = 'common.UserProfile'
