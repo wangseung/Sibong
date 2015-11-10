@@ -102,20 +102,6 @@ def get_rank(request):
 def get_daily_data(request):
     return HttpResponse('[{"date":"10\/13","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"33","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
 
-
-def buystock(request):
-    count = 5
-    stockname = 'layer7'
-    stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1), mystock='', count=count)
-    return True
-
-def sellallstock(requeset):
-    username = ""
-    stockname = ""
-    delstock = HaveStock.objects.filter(owner=username, mystock=stockname).delete()
-    return True
-
-
 def after_deal(request):
     return render(request, 'after_deal.html')
 

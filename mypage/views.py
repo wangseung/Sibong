@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponse, redirect, render_to_response
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from common.models import UserProfile, HaveStock, News, Stock
 # Create your views here.
@@ -11,7 +10,7 @@ def get_rank(request):
         have_stock = HaveStock.objects.filter(owner=i)
         money = i.usermoney
         for j in have_stock:
-            money += j.stockitem.StockPrice * j.count
+            money += j.mystock.StockPrice * j.count
         users_money.append(dict(name=str(i.username), asset=money))
     send_userlist = str(users_money).replace(chr(39),chr(34))
     return HttpResponse(send_userlist , content_type='application/json')
@@ -19,13 +18,13 @@ def get_rank(request):
 
 @csrf_exempt
 def get_account(request):
-    user = UserProfile.objects.filter(username=request.user)[0]
-    have = HaveStock.objects.filter(owner=user)
+    user = UserProfile.objects.get(username=request.user.username)
+    have_stock = HaveStock.objects.filter(owner=user)
     sendlist = list()
-    for i in have:
-        sendlist.append(dict(item=str(i.stockitem.StockItem), past=i.old_stockprice,
-                            profit=int(i.stockitem.StockPrice - i.old_stockprice),
-                            now=i.stockitem.StockPrice, have=i.count))
+    for i in have_stock:
+        sendlist.append(dict(item=str(i.mystock.StockItem), past=i.buy_price,
+                            profit=int(i.mystock.StockPrice - i.buy_price),
+                            now=i.mystock.StockPrice, have=i.count))
     send_list = str(sendlist).replace(chr(39),chr(34))
     return HttpResponse(send_list , content_type='application/json')
 
@@ -33,11 +32,11 @@ def get_account(request):
 def get_earn(request):
     send_value = list()
     value = list()
-    user = UserProfile.objects.filter(username=request.user)[0]
+    user = UserProfile.objects.get(username=request.user.username)
     have_stock = HaveStock.objects.filter(owner=user)
     money = user.usermoney
     for i in have_stock:
-        money += i.stockitem.StockPrice * i.count
+        money += i.mystock.StockPrice * i.count
 
     earn = (money - user.old_usermoney) / user.old_usermoney * 100
     if earn < 0:
@@ -54,11 +53,11 @@ def get_earn(request):
 @csrf_exempt
 def get_value(request):
     send_value = list()
-    user = UserProfile.objects.get(username=request.user)
+    user = UserProfile.objects.get(username=request.user.username)
     have_stock = HaveStock.objects.filter(owner=user)
     money = user.usermoney
     for i in have_stock:
-        money += i.stockitem.StockPrice * i.count
+        money += i.mystock.StockPrice * i.count
     send_value.append(dict(value=money))
     send_value = str(send_value).replace(chr(39),chr(34))
     return HttpResponse(send_value, content_type='application/json')

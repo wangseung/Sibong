@@ -11,7 +11,7 @@ class UserProfile(AbstractUser):
 
 class HaveStock(models.Model):
     owner = models.ForeignKey(UserProfile)
-    mystock = models.CharField(max_length=50)
+    mystock = models.ForeignKey('Stock')
     buy_price = models.IntegerField(null=True)
     count = models.IntegerField()
 
