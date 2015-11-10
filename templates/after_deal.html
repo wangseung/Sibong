@@ -17,6 +17,9 @@
 < script src="js/IE8.js"></script>
 <![endif]-->
 <!-- script start -->
+    {% if request.user.usermoney < request. %}
+        <script>alert("Your Money isn't enough to Buy this Stock")</script>
+    {% endif %}
 <script type="text/javascript" src = "/static/js/after_deal/after_deal_routine.js"></script>
 <script type="text/javascript" src = "/static/js/after_deal/after_deal_layout.js"></script>
 <!-- script end -->

@@ -28,7 +28,7 @@ def stock_request(request):
             stock_check = HaveStock.objects.filter(owner=user, mystock=stock)
 
             if (stock.StockPrice * count) > user.usermoney:
-                raise Http404
+                return HttpResponse()
             if stock_check.count() > 0:
                 count += stock_check[0].count
                 have = HaveStock.objects.get(owner=user, mystock=stock)
@@ -42,10 +42,21 @@ def stock_request(request):
                 user.usermoney -= stock.StockPrice * count
                 user.save()
         elif request.POST.get("which", "") == "mado":
+            count = int(request.POST.get("how_many", ""))
+            stock = Stock.objects.get(StockItem=request.POST.get("item", ""))
+            user = UserProfile.objects.get(username=request.user.username)
+            stock_check = HaveStock.objects.filter(owner=user, mystock=stock)
             
-
+            if stock_check.count() > 0 and count <= stock_check[0].count:
+                have = HaveStock.objects.get(owner=user, mystock=stock)
+                user.usermoney += have.mystock.StockPrice * count
+                have.count -= count
+                have.save()
+                user.save()
+            else:
+                return HttpResponse()
         else:
-            print("Fuck")
+            return HttpResponse()
 
     except:
         print('error')
