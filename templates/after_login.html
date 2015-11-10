@@ -1,12 +1,13 @@
-﻿<!DOCTYPE html>
+﻿{% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset = "utf-8"/>
 	
 	<title>시봉:동아리 모의투자</title>
-<link rel ="stylesheet" type = "text/css" href = "/static/css/after_login.css"/>
-<link rel ="stylesheet" type = "text/css" href = "/static/css/font.css"/>
-<link rel = "stylesheet" type ="text/css" href = "/static/css/start_pages.css"/>
+<link rel ="stylesheet" type = "text/css" href = "{% static 'css/after_login.css' %}"/>
+<link rel ="stylesheet" type = "text/css" href = "{% static 'css/font.css' %}"/>
+<link rel = "stylesheet" type ="text/css" href = "{% static 'css/start_pages.css' %}"/>
 <!--mediaquery start-->
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <!--mediaquery end-->
@@ -14,7 +15,7 @@
 < script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 < ![endif]-->
 <!--[if lte IE 7]>
-< script src="js/IE8.js"></script>
+< script src="{% static 'js/IE8.js' %}"></script>
 <![endif]-->
 <!-- script start -->
 <script>
@@ -64,7 +65,7 @@ function resizing(){
 }
 function logout(){
 	var form_temp = document.createElement("form");
-	form_temp.action = "/logout";
+	form_temp.action = "/logout/";
 	form_temp.method = "POST";
 	if(confirm("정말 로그아웃 하시겠습니까? \n\n")){
 		form_temp.submit();
@@ -73,27 +74,26 @@ function logout(){
 </script>
 </head>
 <body>
-<img src = "/static/images/logout.png" alt = "로그아웃 버튼" class = "logout" onclick = "logout()"/>
+<a href = "/logout/"><img src = "{% static 'images/logout.png' %}" alt = "로그아웃 버튼" class = "logout" onclick="logout()"/></a>
 <wrap>
 	<container id = "template">
 		<div id = "box">
 			<div class = "mainlogo">
 				<font title = "로고를 클릭하면 메인으로 갈 수 있어요!">
-					<a href = "/main/"><img src = "/static/images/mainlogo.png" alt = "메인로고입니다 "/></a>
+					<a href = "/main/"><img src = "{% static 'images/mainlogo.png' %}" alt = "메인로고입니다 "/></a>
 				</font>
 			</div>
-			<span class = "caption">로고를 클릭하면 메인으로 갈 수 있어요!</span>
+            <span class = "caption">로고를 클릭하면 메인으로 갈 수 있어요!</span>
 			<div class = "welcome">
-				<span class = "img_box">
-					<img class = "welcome_img" src = "/static/images/smiling_sibong.png" alt = "웃는 시봉이" />
-				</span>
-				<span class = "welcome_text">'admin' 님 환영합니다!</span>
+				<img class = "welcome_img" src = "{% static 'images/smiling_sibong.png' %}" alt = "웃는 시봉이" />
+				<span class = "welcome_text">'{{ request.user.username }}' 님 환영합니다!</span>
 			</div>
 			<div class = "link">
-				<a href = "/sospi/"><img src = "/static/images/sospi_btn.png"/></a>
-				<a href = "/deal/"><img src = "/static/images/deal_btn.png"/></a>
-				<a href = "/mypage/"><img src = "/static/images/mypage_btn.png"/></a>
-			</div>		
+				<a href = "/sospi/"><img src = "{% static 'images/sospi_btn.png' %}"/></a>
+				<a href = "/deal/"><img src = "{% static 'images/deal_btn.png' %}"/></a>
+				<a href = "/mypage/"><img src = "{% static 'images/mypage_btn.png' %}"/></a>
+			</div>
+			
 		<div>
 	</container>
 </wrap>

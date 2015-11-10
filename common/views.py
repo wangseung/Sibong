@@ -12,7 +12,6 @@ from django.views.decorators.csrf import csrf_exempt
 from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi
 
 def login(request):
-
     results = {}
     if request.method == 'POST':
         username = request.POST.get('username', '')

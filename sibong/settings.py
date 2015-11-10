@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_crontab',
     'common',
+    'mypage',
 )
 
 MIDDLEWARE_CLASSES = (

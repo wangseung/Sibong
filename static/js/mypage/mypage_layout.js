@@ -49,7 +49,7 @@ function set_event(){
 
 function do_logout(){
 	var form_temp = document.createElement("form");
-	form_temp.action = "/logout";
+	form_temp.action = "/logout/";
 	form_temp.method = "POST";
 	form_temp.style.display = "none";
 
@@ -84,7 +84,7 @@ function get_account(accout_array_temp){
 function get_value(value_data_temp){
 	var temp = JSON.parse(value_data_temp);
 
-	var out = "<strong>"+ temp.value + "원</strong> 입니다.";
+	var out = "<strong>"+ temp[0].value + "원</strong> 입니다.";
 
 	document.getElementsByClassName("value")[0].innerHTML = out;
 }
@@ -92,14 +92,14 @@ function get_value(value_data_temp){
 function get_earn(earn_data_temp){
 	var temp = JSON.parse(earn_data_temp);
 	var out = "";
-	if( temp.plus_minus == 1 ){
-		out += "<strong class = 'earn_data' style = 'color:blue;'>" + temp.earn + "% 상승</strong>했습니다.";
+	if( temp[0].plus_minus == 1 ){
+		out += "<strong class = 'earn_data' style = 'color:blue;'>" + temp[0].earn + "% 상승</strong>했습니다.";
 	}
-	else if(temp.plus_minus == 0){
-		out += "<strong class = 'earn_data'>" + temp.earn + "%</strong> 변동이 없습니다.";
+	else if(temp[0].plus_minus == 0){
+		out += "<strong class = 'earn_data'>" + temp[0].earn + "%</strong> 변동이 없습니다.";
 	}
-	else if(temp.plus_minus == -1){
-		out += "<strong class = 'earn_data' style = 'color:red;'>" + temp.earn + "% 하락</strong> 했습니다.";
+	else if(temp[0].plus_minus == -1){
+		out += "<strong class = 'earn_data' style = 'color:red;'>" + temp[0].earn + "% 하락</strong> 했습니다.";
 	}
 
 
