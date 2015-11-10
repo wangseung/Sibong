@@ -40,7 +40,7 @@ function set_event(){
 
 function do_logout(){
 	var form_temp = document.createElement("form");
-	form_temp.action = "/logout";
+	form_temp.action = "/logout/";
 	form_temp.method = "POST";
 	form_temp.style.display = "none";
 
@@ -55,7 +55,7 @@ function submit_check(){
 	var form_temp = document.getElementsByTagName("form")[0];
 	var select_temp = document.getElementById("items");
 	var input_temp = document.getElementById("many");
-	form_temp.action = "/deal";
+	form_temp.action = "/deal/stock_request/";
 	form_temp.method = "POST";
 	if( items.value == ""){
 		alert("종목을 선택해주십시오\n\n");

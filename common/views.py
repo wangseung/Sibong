@@ -119,9 +119,6 @@ def sellallstock(requeset):
 def after_deal(request):
     return render(request, 'after_deal.html')
 
-def deal(request):
-    return render(request, 'deal.html')
-
 def main(request):
     data = request.POST.get('data', '')
     print(request.is_ajax())

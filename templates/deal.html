@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿{% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset = "utf-8"/>
@@ -36,7 +37,7 @@
 			</div>
 		</div>
 	</header>
-	<form action = "/deal" method = "POST">
+	<form action = "/deal/" method = "POST">
 		<input type ="radio" class = "radios" id = "mado" value = "mado" name = "which" checked/>
 		<input type ="radio" class = "radios" id = "masu" value = "masu" name = "which" />
 		<div class = "type_box">
