@@ -94,6 +94,10 @@
 						font-size: .8em;
 						color:white;
 					}
+					.stock_item_graph #table_form .y_cell{
+						text-align:right;
+						white-space: nowrap;
+					}
 					 .stock_item_graph #table_form .x-axis{
 						height: 1em !important;
 					}

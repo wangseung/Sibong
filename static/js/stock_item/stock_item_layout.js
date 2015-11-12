@@ -56,14 +56,15 @@ function make_ingre(){
 function page_layout(){
 	some_box.style.lineHeight = some_box.offsetHeight + "px";
 	name_bar.style.lineHeight = name_bar.offsetHeight + "px";
-	
-	stock_item_graphGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(stock_item_graphGraph,true).marginTop) + "px";
-	stock_item_graphGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(stock_item_graphGraph,true).marginRight) + "px";
-	stock_item_graphGraph_1.style.width = stock_item_graphGraph.offsetWidth + "px";
-	stock_item_graphGraph_1.style.height = stock_item_graphGraph.offsetHeight + "px";
 	for( var i = 0 ; i < table_row.length ; i++){
 		table_row[i].style.height = table_form.offsetHeight / 6 + "px";
+		table_row[i].style.maxWidth = table_form.offsetWidth / 6+ "px";
 	}
+	stock_item_graphGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(stock_item_graphGraph,true).marginTop) + "px";
+	stock_item_graphGraph.style.width = table_form.offsetWidth - table_row[0].offsetWidth - parseInt(getComputedStyle(stock_item_graphGraph,true).marginRight)+ "px";
+	stock_item_graphGraph_1.style.width = stock_item_graphGraph.offsetWidth + "px";
+	stock_item_graphGraph_1.style.height = stock_item_graphGraph.offsetHeight + "px";
+	
 	for( var i = 1 ; i < table_cell.length ; i++){
 		table_cell[i].style.width = stock_item_graphGraph.offsetWidth / 4 + "px";
 	}
@@ -189,7 +190,7 @@ function setting_table(max){
 	var max_temp = max;
 
 	for(var i = 0 ; i < table_row.length;i++){
-		table_row[i].innerHTML = max_temp / 5 * ( 5 - i) + " -";
+		table_row[i].innerHTML = max_temp / 5 * ( 4 - i) + " -&nbsp&nbsp";
 	}
 	if( term.value == "day"){
 		for(var i = 0 ; i < table_cell.length ; i++){

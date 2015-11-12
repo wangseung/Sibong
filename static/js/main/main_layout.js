@@ -79,14 +79,16 @@ function page_layout(){
 
 	news.style.height = sospi.offsetHeight + "px";
 	rank.style.height = news.offsetHeight + items.offsetHeight + "px";
-
-	sospiGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(sospiGraph,true).marginTop) + "px";
-	sospiGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(sospiGraph,true).marginRight) + "px";
-	sospiGraph_1.style.width = sospiGraph.offsetWidth + "px";
-	sospiGraph_1.style.height = sospiGraph.offsetHeight + "px";
 	for( var i = 0 ; i < table_row.length ; i++){
 		table_row[i].style.height = table_form.offsetHeight / 6 + "px";
+		table_row[i].style.maxWidth = table_form.offsetWidth / 6+ "px";
 	}
+	sospiGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(sospiGraph,true).marginTop) + "px";
+	//sospiGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(sospiGraph,true).marginRight) + "px";
+	sospiGraph.style.width = table_form.offsetWidth - table_row[0].offsetWidth - parseInt(getComputedStyle(sospiGraph,true).marginRight)+ "px";
+	sospiGraph_1.style.width = sospiGraph.offsetWidth + "px";
+	sospiGraph_1.style.height = sospiGraph.offsetHeight + "px";
+
 	for( var i = 1 ; i < table_cell.length ; i++){
 		table_cell[i].style.width = sospiGraph.offsetWidth / 4 + "px";
 	}
@@ -294,7 +296,7 @@ function setting_table(max){
 	var max_temp = max;
 
 	for(var i = 0 ; i < table_row.length;i++){
-		table_row[i].innerHTML = max_temp / 5 * ( 5 - i) + " -";
+		table_row[i].innerHTML = max_temp / 5 * ( 4 - i) + " -&nbsp&nbsp";
 	}
 	if( term.value == "day"){
 		for(var i = 0 ; i < table_cell.length ; i++){
