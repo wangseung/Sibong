@@ -189,7 +189,7 @@ function setting_table(max){
 	var max_temp = max;
 
 	for(var i = 0 ; i < table_row.length;i++){
-		table_row[i].innerHTML = max_temp / 5 * ( 4 - i) + " -&nbsp&nbsp";
+		table_row[i].innerHTML = max_temp / 4 * ( 4 - i) + " -&nbsp&nbsp";
 	}
 	if( term.value == "day"){
 		for(var i = 0 ; i < table_cell.length ; i++){
