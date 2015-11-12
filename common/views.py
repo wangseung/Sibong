@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi
+from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi, StockPrice
 
 def login(request):
     results = {}
@@ -85,16 +85,23 @@ def get_more_news(request):
     send_newslist = []
     for i in newslist:
         send_newslist.append(dict(content=str(i.content)))
+    send_newslist.append({"end":'true'})
+    print(send_newslist)
     send_newslist = str(send_newslist).replace(chr(39),chr(34))
-    return HttpResponse(send_newslist, content_type='application/json')
+    return HttpResponse(send_newslist , content_type='application/json')
 
 
 @csrf_exempt
 def get_rank(request):
-    stocks = Stock.objects.all().order_by('-StockPrice')
+    stocks = Stock.objects.all()
     stocklist = []
+    stockdict = {}
     for i in stocks:
-        stocklist.append(dict(item=str(i.StockItem)))
+        stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[0].StockPrice
+        stockdict.update({i.StockItem:stockp})
+    for key in sorted(stockdict, key=stockdict.get, reverse=True):
+        stocklist.append(dict(item=str(key)))
+    print(stockdict)
     send_stocklist = str(stocklist).replace(chr(39),chr(34))
     return HttpResponse(send_stocklist , content_type='application/json')
 
@@ -119,10 +126,12 @@ def sellallstock(requeset):
 def after_deal(request):
     return render(request, 'after_deal.html')
 
+def deal(request):
+    return render(request, 'deal.html')
+
 def main(request):
     data = request.POST.get('data', '')
     print(request.is_ajax())
-
     #if request.method == 'GET':
     print(data)
     return render(request, 'main.html')

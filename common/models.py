@@ -18,8 +18,6 @@ class HaveStock(models.Model):
 
 class Stock(models.Model):
     StockItem = models.CharField(max_length=30,unique=True)
-    StockPrice = models.IntegerField()
-
 
 class News(models.Model):
     content = models.CharField(max_length=2048)
@@ -30,6 +28,10 @@ class Newslist(models.Model):
 
 class Sospi(models.Model):
     data = models.IntegerField()
+
+class StockPrice(models.Model):
+    StockItem = models.ForeignKey(Stock)
+    StockPrice = models.IntegerField()
 
 #stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1),mystock='layer7',count=5)
 #user = UserProfile.objects.create(username='admin',usermoney=999999999999)

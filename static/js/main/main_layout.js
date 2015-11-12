@@ -213,7 +213,7 @@ function do_logout(){
 
 function link(){
 	var form_temp = document.createElement("form");
-	form_temp.action = "/link_by_code";
+	form_temp.action = "//";
 	form_temp.method = "POST";
 
 	var out = "";
