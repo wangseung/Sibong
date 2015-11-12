@@ -17,15 +17,16 @@
 < script src="js/IE8.js"></script>
 <![endif]-->
 <!-- script start -->
-    {% if request.user.usermoney < request. %}
-        <script>alert("Your Money isn't enough to Buy this Stock")</script>
-    {% endif %}
+
 <script type="text/javascript" src = "/static/js/after_deal/after_deal_routine.js"></script>
 <script type="text/javascript" src = "/static/js/after_deal/after_deal_layout.js"></script>
 <!-- script end -->
 </head>
 <body>
 <wrap>
+    {% if request.user.usermoney < request.price %}
+        <script>alert("Your Money isn't enough to Buy this Stock")</script>
+    {% endif %}
 	<header>
 		<div class = "logo_box">
 			<a href = "/after_login/"><img src = "/static/images/main/main_logo.png" alt = "메인로고입니다"/></a>

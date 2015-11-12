@@ -1,17 +1,38 @@
 from django.shortcuts import render, HttpResponse, redirect, render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from common.models import UserProfile, HaveStock, News, Stock
+
+import operator
 # Create your views here.
 @csrf_exempt
 def get_rank(request):
     users = UserProfile.objects.all().order_by('-usermoney')
     users_money = list()
+    moneys = list()
+    """
     for i in users:
         have_stock = HaveStock.objects.filter(owner=i)
         money = i.usermoney
         for j in have_stock:
             money += j.mystock.StockPrice * j.count
-        users_money.append(dict(name=str(i.username), asset=money))
+        moneys.append(money)
+    moneys.sort(reverse=True)
+    print(moneys)
+    """
+    sorted_dic = list()
+    dic = {}
+    for i in users:
+        have_stock = HaveStock.objects.filter(owner=i)
+        money = i.usermoney
+        for j in have_stock:
+            money += j.mystock.StockPrice * j.count
+        dic[i.username]=money
+
+        #users_money.append(dict(name=str(i.username), asset=money))
+    sorted_dic = sorted(dic.items(), key=operator.itemgetter(1), reverse=True)
+    print(sorted_dic)
+    for i in sorted_dic:
+        users_money.append(dict(name=str(i[0]), asset=int(i[1])))
     send_userlist = str(users_money).replace(chr(39),chr(34))
     return HttpResponse(send_userlist , content_type='application/json')
 
@@ -22,9 +43,12 @@ def get_account(request):
     have_stock = HaveStock.objects.filter(owner=user)
     sendlist = list()
     for i in have_stock:
-        sendlist.append(dict(item=str(i.mystock.StockItem), past=i.buy_price,
-                            profit=int(i.mystock.StockPrice - i.buy_price),
-                            now=i.mystock.StockPrice, have=i.count))
+        if i.count <= 0:
+            pass
+        else:
+            sendlist.append(dict(item=str(i.mystock.StockItem), past=i.buy_price,
+                                profit=int(i.mystock.StockPrice - i.buy_price),
+                                now=i.mystock.StockPrice, have=i.count))
     send_list = str(sendlist).replace(chr(39),chr(34))
     return HttpResponse(send_list , content_type='application/json')
 
