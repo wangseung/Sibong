@@ -14,18 +14,18 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATES_DIRS = (
-    os.path.join(BASE_DIR, "templates"),
-    os.path.join(BASE_DIR, "static")
-    )
 
-print(TEMPLATES_DIRS)
+TEMPLATES_DIRS = (
+    os.path.join(BASE_DIR, "/templates/"),
+)
+#print(BASE_DIR,TEMPLATES_DIRS)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!t1h*k5gim3z$wl6!+f)sir$9_^o_$dpm$sgx3oaj$5f8s(n*v'
+SECRET_KEY = 'o^0qb_^qz+wl7g*5wmdp-v&(53=l3&4bg%8%y_i5eb*ah$mi&s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,7 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps'
+    'django_crontab',
+    'common',
+    'mypage',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'sibong.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [os.path.join(BASE_DIR, "static/../templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,6 +108,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-AUTH_USER_MODEL = 'apps.UserProfile'
+
+STATIC_DIRS = (
+    os.path.join(BASE_DIR, "static/"),
+)
 
 
+AUTH_USER_MODEL = 'common.UserProfile'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    #'/Users/wangseunghyeon/Desktop/_/sibong/static/',
+)
+
+CRONJOBS = [
+    ('*/30 * * * *', 'common.cron.add_news')
+]

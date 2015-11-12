@@ -1,0 +1,94 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8"/>
+	
+	<meta name="keywords" content="모의투자 선린 동아리 주식" />
+	<meta name="description" content="시봉: 선린 동아리 모의투자 서비스" />
+	
+	<title>시봉:동아리 모의투자</title>
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/index.css' %}"/>
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/start_pages.css' %}" />
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/font.css' %}"/>
+<!--mediaquery start-->
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<!--mediaquery end-->
+<!--[if lt IE 9]>
+< script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+< ![endif]-->
+<!--[if lte IE 7]>
+< script src="{% static 'js/IE8.js' %}"></script>
+<![endif]-->
+<!-- script start -->
+<script>
+var check_size;
+var con;
+
+window.onload = function(){
+	con = document.getElementById("template");
+	
+	if(document.body.offsetWidth <= document.body.offsetHeight / 2 * 3 ){
+		con.style.width = "100%";
+		con.style.height = con.offsetWidth / 3 * 2 +"px";
+		check_size = 1;
+	}
+	else{
+		con.style.height = "100%";
+		con.style.width = con.offsetHeight / 2 * 3 + "px";
+		check_size = 2;
+	}
+
+	window.onresize = resizing;
+}
+
+function resizing(){
+	if(document.body.offsetWidth <= document.body.offsetHeight / 2 * 3){
+		con.style.width = "100%";
+		con.style.height = con.offsetWidth / 3* 2+ "px";
+	}
+	else{
+		con.style.height = "100%";
+		con.style.width = con.offsetHeight / 2 * 3 + "px";
+	}
+
+
+}
+</script>
+</head>
+<body>
+{% if request.user.is_anonymous %}
+
+<wrap>
+	<container id = "template">
+		<div id = "box">
+			<div class = "mainlogo">
+				<a href = ""><img src = "{% static 'images/mainlogo.png' %}" alt = "메인로고입니다 "/></a>
+			</div>
+            <form action = "." method = "post">
+			<div class = "inputs_wrap">
+				<div class = "inputs">
+					<input type = "text" name = "username" placeholder = "ID" class = "id_in" />
+				</div>
+				<div class = "inputs">
+					<input type = "password" name = "password" placeholder = "P/W" class = "pwd_in"/>
+				</div>
+			</div>
+				<div class = "login_btn">
+					<input type = "submit" id = "login_btn"/>
+					<label for = "login_btn"><img src = "{% static 'images/login_btn.png' %}" alt = "로그인 제출 버튼입니다."/></label>
+				</div>
+            {% csrf_token %}
+			</form>
+
+		<div>
+	</container>
+</wrap>
+    <p style = "color:white">{{ error }}</p>
+{% else %}
+
+    <meta http-equiv="REFRESH" content="0;url=/after_login/">
+
+{% endif %}
+</body>
+</html>

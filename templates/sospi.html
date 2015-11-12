@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8"/>
+	
+	<title>시봉:동아리 모의투자</title>
+<link rel ="stylesheet" type = "text/css" href = "/static/css/font.css"/>
+<link rel ="stylesheet" type = "text/css" href = "/static/css/default.css"/>
+<link rel ="stylesheet" type = "text/css" href = "/static/css/sospi.css"/>
+
+<!--mediaquery start-->
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<!--mediaquery end-->
+<!--[if lt IE 9]>
+< script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+< ![endif]-->
+<!--[if lte IE 7]>
+< script src="js/IE8.js"></script>
+<![endif]-->
+<!-- script start -->
+<script type="text/javascript" src = "/static/js/sospi/sospi_routine.js"></script>
+<script type="text/javascript" src = "/static/js/sospi/sospi_layout.js"></script>
+<script type="text/javascript" src = "/static/js/VJGraph.js"></script>
+<script type ="text/javascript" src ="/static/js/sospi/sospi_ajax.js"></script>
+<!-- script end -->
+</head>
+<body>
+<wrap>
+	<header>
+		<div class = "logo_box">
+			<a href = "/after_login/"><img src = "/static/images/main/main_logo.png" alt = "메인로고입니다"/></a>
+		</div>
+		<div class = "some_box">
+			<img src = "/static/images/main/sibong.png" alt = "시봉이"/>
+			<div class = "my_button">
+				<img id = "logout" src = "/static/images/main/logout.png"/>
+				<a href = "/mypage/"><span>마이페이지</span></a>
+			</div>
+		</div>
+	</header>
+	<div class = "sospi">
+		<span class = 'title'>
+			<img src = "/static/images/main/sospi_img.png" alt = "선린피"/>
+			<span class = "title_text">SOSPI</span>
+			<div class = "select_box">
+			<select id = "term" name = "term">
+				<option class = 'data_term' value = 'day' >하루</option>
+				<option class = 'data_term' value = 'week'>일주일</option>
+			</select>
+			</div>
+		</span>
+		<div class = 'graph_form'>
+			<table id = "table_form">
+				<tr>
+					<td class = "y_cell"></td>
+				</tr>
+				<tr>
+					<td class = "y_cell"></td>
+				</tr>
+				<tr>
+					<td class = "y_cell"></td>
+				</tr>
+				<tr>
+					<td class = "y_cell"></td>
+				</tr>
+				<tr>
+					<td class = "y_cell"></td>
+				</tr>
+				<tr class = "x-axis">
+					<td class = "x_cell"></td><td class = "x_cell"></td><td class = "x_cell"></td><td class = "x_cell"></td><td class = "x_cell"></td>
+				</tr>						
+			</table>
+			<div id="sospiGraph" class = "graph_" ></div>
+			<div id="sospiGraph_1" class = "graph_" ></div>
+		</div>
+	</div>
+	<div class = "daily_data">
+		<span class = 'title long'>
+			<img src = "/static/images/sospi/calender.png" alt = "날짜별 정보"/><span class = "title_text">날짜 별 종료가격 / 등락률</span>
+		</span>
+		<div class = "lists">
+		</div>
+	</div>
+</wrap>
+</body>
+</html>
