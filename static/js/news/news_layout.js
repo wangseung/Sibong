@@ -1,6 +1,6 @@
 function make(){
 	make_ingre();
-	ajax_get_news();
+	ajax_get_more_news();
 }
 
 
@@ -55,17 +55,19 @@ function do_logout(){
 	}
 }
 
+
 function get_news(news_array_temp){
 	var temp = JSON.parse(news_array_temp);
 	for(var i = 0 ; i < temp.length; i++){
-		if(temp[i].end != true){
+		alert(temp[i]);
+		if(temp[i].end != 'true'){
 			var div_temp = document.createElement("div");
 			div_temp.className = "news_box"
 
 			var out = "";
 			out += "\
 				<span class = 'megaphone_img'>\
-					<img src = '../images/main/megaphone.png' alt = '뉴스'/>\
+					<img src = '/static/images/main/megaphone.png' alt = '뉴스'/>\
 				</span>\
 				<span class = 'news_text'>\
 					<font title = '"+temp[i].content+"'><p>\"\
@@ -92,10 +94,9 @@ function get_news(news_array_temp){
 			div_temp.innerHTML = out;
 			news_view.appendChild(div_temp);
 		}
-	}	
+	}
 
 }
-
 
 var scroll_height;
 var scroll_view_height;
