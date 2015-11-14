@@ -123,5 +123,5 @@ STATICFILES_DIRS = (
 )
 
 CRONJOBS = [
-    ('*/30 * * * *', 'common.cron.add_news')
+    ('*/1 * * * *', 'common.cron.add_news')
 ]

@@ -119,7 +119,7 @@ def get_rank(request):
     stocklist = []
     stockdict = {}
     for i in stocks:
-        stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[0].StockPrice
+        stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[1].StockPrice
         stockdict.update({i.StockItem:stockp})
     for key in sorted(stockdict, key=stockdict.get, reverse=True):
         stocklist.append(dict(item=str(key)))

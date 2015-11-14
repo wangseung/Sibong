@@ -1,17 +1,20 @@
 import random
 
-from common.models import *
+from common.models import Stock, StockPrice, News, Newslist
+
 
 def add_news():
-    stocks = list(Stock.objects.all())
-    news = list(News.objects.all())
-    for i in range(0, 5):
-        rand_stock = random.choice(stocks)
+    news = News.objects.all()
+    stocks = Stock.objects.all()
+    stockp = StockPrice.objects.all()
+    for i in range(0,5):
         rand_news = random.choice(news)
-        content = rand_stock.StockItem+" "+rand_news.content
-        var_price = int(rand_stock.StockPrice + rand_news.variation * 100000)
-        s = Stock.objects.filter(StockItem=str(rand_stock.StockItem))
-        Stock.objects.filter(StockItem=s[0].StockItem).update(StockPrice=var_price)
-
-        newscreate = Newslist.objects.create(content=content)
-        newscreate.save()
+        content = stocks[i].StockItem + " " + rand_news.content
+        price = stockp.filter(StockItem_id = stocks[i].id).order_by('-id')[0].StockPrice
+        if price > 10000 :
+            price = int(price + rand_news.variation * 100)
+        createprice = StockPrice.objects.create(StockPrice=price, StockItem_id=stocks[i].id)
+        createprice.save()
+        print("asdf")
+        createnews = Newslist.objects.create(content=content)
+        createnews.save()
