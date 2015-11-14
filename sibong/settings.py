@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django_crontab',
     'common',
     'mypage',
+    'stock_item',
 )
 
 MIDDLEWARE_CLASSES = (

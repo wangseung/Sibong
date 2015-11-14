@@ -34,5 +34,9 @@ urlpatterns = [
     url(r'^after_deal/$', 'common.views.after_deal'),
     url(r'^deal/', include('deal.urls')),
     url(r'^mypage/', include('mypage.urls')),
-    url(r'^get_more_news', 'common.views.get_more_news')
+    url(r'^get_more_news', 'common.views.get_more_news'),
+    url(r'^get_price_data/$', 'common.views.get_price_data'),
+    url(r'^stock_item_get_news/$', 'common.views.stock_item_get_news'),
+    url(r'^stock_item/', include('stock_item.urls')),
+
 ]
