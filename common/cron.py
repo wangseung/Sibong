@@ -19,13 +19,15 @@ def add_news():
         var_list.append(rand_news.variation)
         if price > 10000:
             price = int(price + rand_news.variation * 1000)
-        createprice = StockPrice.objects.create(StockPrice=price, StockItem_id=stocks[i].id)
+
+        createprice = StockPrice.objects.create(StockPrice=price, StockItem_id=stocks[i].id, fluctuation=rand_news.variation)
         createprice.save()
 
-        createnews = Newslist.objects.create(content=content)
+        createnews = Newslist.objects.create(content=content, stock=stocks[i].StockItem)
         createnews.save()
 
     average = sum(var_list) / len(stocks)
     nowsospi = sospi.all().order_by('-id')[0].data
-    sospi.create(data=(average * 10 + nowsospi), day=int(today.day), month=int(today.month), fluctuation=average)
-    sospi.save()
+
+    s = Sospi.objects.create(data=(average * 10 + nowsospi), day=int(today.day), month=int(today.month), fluctuation=average)
+    s.save()

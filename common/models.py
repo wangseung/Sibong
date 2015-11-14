@@ -23,6 +23,7 @@ class News(models.Model):
     variation = models.IntegerField()
 
 class Newslist(models.Model):
+    stock = models.CharField(max_length=20, default="")
     content = models.CharField(max_length=2048)
 
 class Sospi(models.Model):
@@ -34,6 +35,8 @@ class Sospi(models.Model):
 class StockPrice(models.Model):
     StockItem = models.ForeignKey(Stock)
     StockPrice = models.IntegerField()
+    fluctuation = models.IntegerField(default=0)
+
 
 
 #stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1),mystock='layer7',count=5)

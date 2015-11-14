@@ -1,10 +1,12 @@
-from django.db import IntegrityError
+from datetime import date
+
 from django.shortcuts import render, HttpResponse, redirect, render_to_response
 from django.contrib import auth
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.views.decorators.csrf import csrf_exempt
 
 from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi, StockPrice
+
 
 def login(request):
     results = {}
@@ -13,21 +15,22 @@ def login(request):
         password = request.POST.get('password', '')
         user = auth.authenticate(username=username, password=password)
         if UserProfile.objects.filter(username=username).exists() is not True:
-            user_create = UserProfile.objects.create(username=username,usermoney=10000000)
+            user_create = UserProfile.objects.create(username=username, usermoney=10000000)
             user_create.set_password(password)
             user_create.save()
             results['error'] = "Success Register.\nPlease login"
             return render(request, 'index.html', results)
         if user is not None:
-            auth_login(request,user)
+            auth_login(request, user)
             return redirect('/after_login/')
         else:
             results['error'] = "Wrong!, Try Again!"
-    return render(request, 'index.html',results)
+    return render(request, 'index.html', results)
 
 
 def after_login(request):
     return render(request, 'after_login.html')
+
 
 @csrf_exempt
 def logout(request):
@@ -50,31 +53,26 @@ def after_deal(request):
 def deal(request):
     return render(request, 'deal.html')
 
-#@csrf_exempt
-#def stock_item(request):
+
+# @csrf_exempt
+# def stock_item(request):
 #    return render(request, 'stock_item.html')
 
 
 def main(request):
     data = request.POST.get('data', '')
-    #if request.method == 'GET':
+    # if request.method == 'GET':
     return render(request, 'main.html')
-
-
-
-
-
-
 
 
 @csrf_exempt
 def get_items(request):
-    stock_list=[]
+    stock_list = []
     stocks = Stock.objects.all()
     for i in range(len(stocks)):
         stock_list.append(dict(item=str(stocks[i].StockItem)))
-    send_stock_list = str(stock_list).replace(chr(39),chr(34))
-    return HttpResponse(send_stock_list ,content_type='application/json')
+    send_stock_list = str(stock_list).replace(chr(39), chr(34))
+    return HttpResponse(send_stock_list, content_type='application/json')
 
 
 @csrf_exempt
@@ -97,8 +95,9 @@ def get_news(request):
     send_newslist = []
     for i in newslist:
         send_newslist.append(dict(content=str(i.content)))
-    send_newslist = str(send_newslist).replace(chr(39),chr(34))
+    send_newslist = str(send_newslist).replace(chr(39), chr(34))
     return HttpResponse(send_newslist, content_type='application/json')
+
 
 @csrf_exempt
 def get_more_news(request):
@@ -106,9 +105,9 @@ def get_more_news(request):
     send_newslist = []
     for i in newslist:
         send_newslist.append(dict(content=str(i.content)))
-    send_newslist.append({"end":'true'})
-    send_newslist = str(send_newslist).replace(chr(39),chr(34))
-    return HttpResponse(send_newslist , content_type='application/json')
+    send_newslist.append({"end": 'true'})
+    send_newslist = str(send_newslist).replace(chr(39), chr(34))
+    return HttpResponse(send_newslist, content_type='application/json')
 
 
 @csrf_exempt
@@ -118,38 +117,37 @@ def get_rank(request):
     stockdict = {}
     for i in stocks:
         stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[1].StockPrice
-        stockdict.update({i.StockItem:stockp})
+        stockdict.update({i.StockItem: stockp})
     for key in sorted(stockdict, key=stockdict.get, reverse=True):
         stocklist.append(dict(item=str(key)))
-    send_stocklist = str(stocklist).replace(chr(39),chr(34))
-    return HttpResponse(send_stocklist , content_type='application/json')
+    send_stocklist = str(stocklist).replace(chr(39), chr(34))
+    return HttpResponse(send_stocklist, content_type='application/json')
+
 
 @csrf_exempt
 def get_daily_data(request):
-    return HttpResponse('[{"date":"10\/13","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"3","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
+    sendlist = []
+    t = date.today()
+    for i in range(9):
+        sum = 0
+        s = Sospi.objects.all().filter(day=(t.day - i)).order_by('-id')
+        price = Sospi.objects.all().filter(day=(t.day - i)).order_by('-id')[0].data
 
-@csrf_exempt
-def get_price_data(request):
-    return HttpResponse('{"img":"/static/images/stock_item/happy_sibong.png","value":"100,000","percent":"10","up_down":"1"}', content_type='application/json')
+        for j in s:
+            sum += j.fluctuation
+        fluc = int(round(sum / len(s)))
+        pm = 0
+        if fluc > 0:
+            pm = 1
+        elif fluc < 0:
+            pm = -1
+            fluc *= -1
 
-def buystock(request):
-    count = 5
-    stockname = 'layer7'
-    stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1), mystock='', count=count)
-    return True
+        sendlist.append(
+            dict(date=str(t.month)+"/"+str(t.day - i), price=str(price), percent=str(fluc), plus_minus=str(pm)))
 
-def sellallstock(requeset):
-    username = ""
-    stockname = ""
-    delstock = HaveStock.objects.filter(owner=username, mystock=stockname).delete()
-    return True
+    sendlist = str(sendlist).replace(chr(39), chr(34))
+    return HttpResponse(sendlist, content_type='application/json')
 
-@csrf_exempt
-def stock_item_get_news(request):
-    newslist = Newslist.objects.all().order_by('-id')[:6]
-    send_newslist = []
-    for i in newslist:
-        send_newslist.append(dict(content=str(i.content),img=""))
-    send_newslist = str(send_newslist).replace(chr(39),chr(34))
-    return HttpResponse(send_newslist, content_type='application/json')
+
 

@@ -27,3 +27,36 @@ def get_graph_data(request):
             data.append(i.StockPrice)
     data.reverse()
     return HttpResponse(str(data), content_type='application/json')
+
+
+@csrf_exempt
+def get_price_data(request):
+    stock = request.path.split('/')[3]
+    stock_id = Stock.objects.all().filter(StockItem=str(stock))[0].id
+    stockp = StockPrice.objects.all().filter(StockItem=int(stock_id)).order_by('-id')[0]
+
+    price = stockp.StockPrice
+    fluc = stockp.fluctuation
+    feel = ""
+    pm = 0
+    if fluc > 0:
+        pm = 1
+        feel = "happy"
+    elif fluc < 0:
+        pm = -1
+        fluc *= -1
+        feel = "sad"
+    senddict = dict(img=str(feel), value=str(price), percent=str(fluc), up_down=str(pm))
+    senddict = str(senddict).replace(chr(39), chr(34))
+
+    return HttpResponse(senddict,content_type='application/json')
+
+@csrf_exempt
+def get_news(request):
+    stock = request.path.split('/')[3]
+    newslist = Newslist.objects.all().filter(stock=stock).order_by('-id')[:6]
+    send_newslist = []
+    for i in newslist:
+        send_newslist.append(dict(content=str(i.content), img=""))
+    send_newslist = str(send_newslist).replace(chr(39), chr(34))
+    return HttpResponse(send_newslist, content_type='application/json')

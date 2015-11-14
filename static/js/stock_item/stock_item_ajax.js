@@ -21,7 +21,8 @@ function ajax_get_graph_data(){
 
 function ajax_get_price_data(){
 	var temp = new XMLHttpRequest();
-	temp.open("post","/get_price_data/");
+	name = document.location.href.split('/')[4]
+	temp.open("post","/stock_item/get_price_data/" + name);
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_price_data(temp.responseText);
@@ -32,7 +33,8 @@ function ajax_get_price_data(){
 
 function ajax_get_news(){
 	var temp = new XMLHttpRequest();
-	temp.open("post","/stock_item_get_news/");
+	name = document.location.href.split('/')[4]
+	temp.open("post","/stock_item/get_news/" + name);
 	temp.onreadystatechange = function(){
 		if(temp.readyState === 4 && temp.status === 200){
 			get_news(temp.responseText);

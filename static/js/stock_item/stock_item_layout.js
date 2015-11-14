@@ -210,13 +210,13 @@ function get_price_data(price_data_temp){
 	var out = "";
 
 	if(temp.up_down == 1){
-		out += "<img src = '"+temp.img+"' alt = '전일 대비 상승'/>";
+		out += "<img src = '/static/images/stock_item/"+temp.img+"_sibong.png' alt = '전일 대비 상승'/>";
 	}
 	else if(temp.up_down == 0){
-		out += "<img src = '"+temp.img+"' alt = '전일과 동일'/>";
+		out += "<img src = '/static/images/stock_item/"+temp.img+"_sibong.png' alt = '전일과 동일'/>";
 	}
 	else if(temp.up_down == -1){
-		out += "<img src = '"+temp.img+"' alt = '전일 대비 하락'/>";
+		out += "<img src = '/static/images/stock_item/"+temp.img+"_sibong.png'' alt = '전일 대비 하락'/>";
 	}
 
 	out += "<span class = 'value' >"+temp.value+"</span>";
