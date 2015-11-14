@@ -9,8 +9,8 @@ stock = ""
 
 @csrf_exempt
 def stock_item(request):
-    stock = request.path
-    return render(request,'stock_item.html')
+    stock = request.path.split('/')[2]
+    return render(request,'stock_item.html',context={'stock' : stock})
 
 
 @csrf_exempt

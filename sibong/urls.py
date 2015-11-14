@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^get_news/$', 'common.views.get_news'),
     url(r'^news/$', 'common.views.news'),
     url(r'^sospi/$', 'common.views.sospi'),
-    url(r'^stock_item/$', 'common.views.stock_item'),
     url(r'^get_daily_data/$', 'common.views.get_daily_data'),
     url(r'^$', 'common.views.login'),
     url(r'^after_deal/$', 'common.views.after_deal'),

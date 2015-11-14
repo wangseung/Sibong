@@ -79,7 +79,6 @@ def get_items(request):
 
 @csrf_exempt
 def get_graph_data(request):
-    print(request.path)
     data = []
     s = Sospi.objects.all().order_by('-id')
     if request.POST.get('data') == 'day':
@@ -108,7 +107,6 @@ def get_more_news(request):
     for i in newslist:
         send_newslist.append(dict(content=str(i.content)))
     send_newslist.append({"end":'true'})
-    print(send_newslist)
     send_newslist = str(send_newslist).replace(chr(39),chr(34))
     return HttpResponse(send_newslist , content_type='application/json')
 
@@ -123,13 +121,12 @@ def get_rank(request):
         stockdict.update({i.StockItem:stockp})
     for key in sorted(stockdict, key=stockdict.get, reverse=True):
         stocklist.append(dict(item=str(key)))
-    print(stockdict)
     send_stocklist = str(stocklist).replace(chr(39),chr(34))
     return HttpResponse(send_stocklist , content_type='application/json')
 
 @csrf_exempt
 def get_daily_data(request):
-    return HttpResponse('[{"date":"10\/13","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"33","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
+    return HttpResponse('[{"date":"10\/13","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/12","price":"35,000","percent":"3","plus_minus":"-1"},{"date":"10\/11","price":"40,000","percent":"3","plus_minus":"1"},{"date":"10\/10","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/9","price":"14,000","percent":"0","plus_minus":"0"},{"date":"10\/8","price":"35,000","percent":"2","plus_minus":"1"},{"date":"10\/7","price":"25,000","percent":"3","plus_minus":"-1"},{"date":"10\/6","price":"35,000","percent":"3","plus_minus":"1"},{"date":"10\/5","price":"2,000","percent":"0","plus_minus":"0"}]', content_type='application/json')
 
 @csrf_exempt
 def get_price_data(request):
@@ -149,5 +146,10 @@ def sellallstock(requeset):
 
 @csrf_exempt
 def stock_item_get_news(request):
-    return HttpResponse('[{"content":"hello","img":"/static/images/stock_item/newsbutton.png"}]', content_type='application/json')
+    newslist = Newslist.objects.all().order_by('-id')[:6]
+    send_newslist = []
+    for i in newslist:
+        send_newslist.append(dict(content=str(i.content),img=""))
+    send_newslist = str(send_newslist).replace(chr(39),chr(34))
+    return HttpResponse(send_newslist, content_type='application/json')
 

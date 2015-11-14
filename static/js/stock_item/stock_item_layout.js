@@ -243,7 +243,7 @@ function get_news(news_array_temp){
 
 		var out = "";
 		out += "<span>"+temp[i].content+"</span>";
-		out += "<img src = '"+temp[i].img+"' alt = '최근 뉴스' />";
+		out += "<img src = '/static/images/stock_item/newsbutton.png' alt = '최근 뉴스' />";
 
 		div_temp.innerHTML = out;
 
