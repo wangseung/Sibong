@@ -213,7 +213,7 @@ function get_price_data(price_data_temp){
 		out += "<img src = '/static/images/stock_item/"+temp.img+"_sibong.png' alt = '전일 대비 상승'/>";
 	}
 	else if(temp.up_down == 0){
-		out += "<img src = '/static/images/stock_item/"+temp.img+"_sibong.png' alt = '전일과 동일'/>";
+		out += "<img src = '/static/images/main/"+"sibong.png' alt = '전일과 동일'/>";
 	}
 	else if(temp.up_down == -1){
 		out += "<img src = '/static/images/stock_item/"+temp.img+"_sibong.png'' alt = '전일 대비 하락'/>";

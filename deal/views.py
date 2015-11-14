@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, Http404
 
-from common.models import Stock, UserProfile, HaveStock
+from common.models import Stock, StockPrice, UserProfile, HaveStock
 # Create your views here.
 
 def index(request):
@@ -24,7 +24,9 @@ def stock_request(request):
     try:
         if request.POST.get("which", "") == "masu":
             count = int(request.POST.get("how_many", ""))
-            stock = Stock.objects.get(StockItem=request.POST.get("item", ""))
+            stockitem = Stock.objects.get(StockItem=request.POST.get("item",""))
+            stocklist = StockPrice.objects.filter(StockItem=stockitem)
+            stock = stocklist[len(stocklist)-1]
             user = UserProfile.objects.get(username=request.user.username)
             stock_check = HaveStock.objects.filter(owner=user, mystock=stock)
 
@@ -38,13 +40,15 @@ def stock_request(request):
                 user.save()
                 have.save()
             else:
-                HaveStock.objects.create(owner=request.user, mystock=stock,
+                HaveStock.objects.create(owner=user, mystock=stock,
                                          count=count, buy_price=stock.StockPrice)
                 user.usermoney -= stock.StockPrice * count
                 user.save()
         elif request.POST.get("which", "") == "mado":
             count = int(request.POST.get("how_many", ""))
-            stock = Stock.objects.get(StockItem=request.POST.get("item", ""))
+            stockitem = Stock.objects.get(StockItem=request.POST.get("item",""))
+            stocklist = StockPrice.objects.filter(StockItem=stockitem)
+            stock = stocklist[len(stocklist)-1]
             user = UserProfile.objects.get(username=request.user.username)
             stock_check = HaveStock.objects.filter(owner=user, mystock=stock)
 
