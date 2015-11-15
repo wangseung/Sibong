@@ -35,7 +35,7 @@ def stock_request(request):
                 return render_to_response('after_deal.html', context=RequestContext(request,{'price': stock.StockPrice*count,}))
             if stock_check.count() > 0:
                 count += stock_check[0].count
-                have = HaveStock.objects.get(owner=user, my_stock=stock)
+                have = HaveStock.objects.get(owner=usecdr, my_stock=stock)
                 have.count = count
                 user.usermoney -= stock_check[0].count * stock.StockPrice
                 user.save()
@@ -55,12 +55,12 @@ def stock_request(request):
 
             if stock_check.count() > 0 and count <= stock_check[0].count:
                 have = HaveStock.objects.get(owner=user, my_stock=stock)
-                user.usermoney += have.my_stock.StockPrice * count
+                user.usermoney += stock.StockPrice * count
                 have.count -= count
                 have.save()
                 user.save()
             else:
-                return render_to_response('after_deal.html', context=RequestContext(request,{'count': count}))
+                return render_to_response('after_deal.html', context=RequestContext(request,{'data':'True'}))
         else:
             raise Http404()
 

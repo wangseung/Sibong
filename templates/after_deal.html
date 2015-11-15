@@ -32,7 +32,7 @@
     {% endif %}
     {% if request.user.usermoney < price %}
         <script>alert("돈이 "+({{ price }}-{{ request.user.usermoney }})+"원 부족합니다! ㅠㅠ")</script>
-    {% elif count %}
+    {% elif data %}
         <script>alert("갯수가 너무 많습니다!")</script>
     {% endif %}
 <wrap>
