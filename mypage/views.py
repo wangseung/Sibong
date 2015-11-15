@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from common.models import UserProfile, HaveStock, News, Stock
+from common.models import UserProfile, HaveStock, News, Stock, StockPrice
 
 import operator
 # Create your views here.
@@ -28,12 +28,14 @@ def get_account(request):
     have_stock = HaveStock.objects.filter(owner=user)
     sendlist = list()
     for i in have_stock:
+        stocklist = StockPrice.objects.filter(StockItem=i.my_stock.StockItem)
+        now_price = stocklist[len(stocklist)-1].StockPrice
         if i.count <= 0:
             pass
         else:
             sendlist.append(dict(item=str(i.my_stock.StockItem.StockItem), past=i.buy_price,
                                 profit=int(i.my_stock.StockPrice - i.buy_price),
-                                now=i.my_stock.StockPrice, have=i.count))
+                                now=now_price, have=i.count))
     send_list = str(sendlist).replace(chr(39),chr(34))
     return HttpResponse(send_list , content_type='application/json')
 
