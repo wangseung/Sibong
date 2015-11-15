@@ -59,10 +59,6 @@ function do_logout(){
 function get_news(news_array_temp){
 	var temp = JSON.parse(news_array_temp);
 	for(var i = 0 ; i < temp.length; i++){
-<<<<<<< HEAD
-		alert(temp[i]);
-=======
->>>>>>> master
 		if(temp[i].end != 'true'){
 			var div_temp = document.createElement("div");
 			div_temp.className = "news_box"
