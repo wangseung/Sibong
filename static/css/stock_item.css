@@ -54,7 +54,7 @@
 				display: inline-block;
 				position: relative;
 				width: 100%;
-				height: 50%;
+				height: 55%;
 				float: left;
 			}	
 				.stock_item_graph .select_box{
@@ -95,6 +95,7 @@
 						color:white;
 					}
 					.stock_item_graph #table_form .y_cell{
+						display: inline-block;
 						text-align:right;
 						white-space: nowrap;
 					}
