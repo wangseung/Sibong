@@ -79,7 +79,7 @@ form{
 				color: white;
 				height: 3rem;
 				line-height: 3rem;
-				font-family: "a파도소리";
+				font-family: "apado";
 			}
 			.inputs div .sub:after{
 				content:"";
@@ -93,7 +93,7 @@ form{
 
 				border: none;
 				color: white;
-				font-family: "a파도소리";
+				font-family: "apado";
 				font-size: 1.1rem;
 				letter-spacing: .2rem;
 			}
@@ -102,7 +102,7 @@ form{
 				width: 50%;
 				height: 2rem;
 				text-align: right;
-				font-family: "a파도소리";
+				font-family: "apado";
 				font-size: 1.3rem;
 
 				color: white;
