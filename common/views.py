@@ -7,10 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi, StockPrice
 
-<<<<<<< HEAD
-from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi, StockPrice
-=======
->>>>>>> master
 
 def login(request):
     results = {}
@@ -109,16 +105,9 @@ def get_more_news(request):
     send_newslist = []
     for i in newslist:
         send_newslist.append(dict(content=str(i.content)))
-<<<<<<< HEAD
-    send_newslist.append({"end":'true'})
-    print(send_newslist)
-    send_newslist = str(send_newslist).replace(chr(39),chr(34))
-    return HttpResponse(send_newslist , content_type='application/json')
-=======
     send_newslist.append({"end": 'true'})
     send_newslist = str(send_newslist).replace(chr(39), chr(34))
     return HttpResponse(send_newslist, content_type='application/json')
->>>>>>> master
 
 
 @csrf_exempt
@@ -127,15 +116,6 @@ def get_rank(request):
     stocklist = []
     stockdict = {}
     for i in stocks:
-<<<<<<< HEAD
-        stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[0].StockPrice
-        stockdict.update({i.StockItem:stockp})
-    for key in sorted(stockdict, key=stockdict.get, reverse=True):
-        stocklist.append(dict(item=str(key)))
-    print(stockdict)
-    send_stocklist = str(stocklist).replace(chr(39),chr(34))
-    return HttpResponse(send_stocklist , content_type='application/json')
-=======
         stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[1].StockPrice
         stockdict.update({i.StockItem: stockp})
     for key in sorted(stockdict, key=stockdict.get, reverse=True):
@@ -143,7 +123,6 @@ def get_rank(request):
     send_stocklist = str(stocklist).replace(chr(39), chr(34))
     return HttpResponse(send_stocklist, content_type='application/json')
 
->>>>>>> master
 
 @csrf_exempt
 def get_daily_data(request):
@@ -171,16 +150,4 @@ def get_daily_data(request):
     return HttpResponse(sendlist, content_type='application/json')
 
 
-<<<<<<< HEAD
-def deal(request):
-    return render(request, 'deal.html')
 
-def main(request):
-    data = request.POST.get('data', '')
-    print(request.is_ajax())
-    #if request.method == 'GET':
-    print(data)
-    return render(request, 'main.html')
-=======
-
->>>>>>> master

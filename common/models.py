@@ -39,10 +39,6 @@ class StockPrice(models.Model):
 
 
 
-class StockPrice(models.Model):
-    StockItem = models.ForeignKey(Stock)
-    StockPrice = models.IntegerField()
-
 #stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1),mystock='layer7',count=5)
 #user = UserProfile.objects.create(username='admin',usermoney=999999999999)
 #user.set_password('admina')

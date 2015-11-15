@@ -45,11 +45,7 @@ INSTALLED_APPS = (
     'django_crontab',
     'common',
     'mypage',
-<<<<<<< HEAD
-    'deal',
-=======
     'stock_item',
->>>>>>> master
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,7 +96,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
