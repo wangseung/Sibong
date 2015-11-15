@@ -35,3 +35,7 @@ class Sospi(models.Model):
     day = models.IntegerField(default=0)
     month = models.IntegerField(default=0)
     fluctuation = models.IntegerField(default=0)
+
+class Compare(models.Model):
+    owner = models.ForeignKey(UserProfile)
+    compare = models.IntegerField(default=0)

@@ -80,13 +80,25 @@ function page_layout(){
 	news.style.height = sospi.offsetHeight + "px";
 	rank.style.height = news.offsetHeight + items.offsetHeight + "px";
 
+	table_row[0].style.maxWidth = table_form.offsetWidth / 4 + "px";
+	table_row[0].style.marginTop = ".1rem";
+	for( var i = 0 ; i < table_row.length ; i++){
+		if( i == 0){
+			table_row[i].style.height = table_form.offsetHeight / 5 + "px";
+		}
+		else{
+			table_row[i].style.height = table_form.offsetHeight / 5 + "px";
+		}
+		table_row[table_row.length - 1].style.height = "0px";
+		table_row[i].style.verticalAlign = "top";
+		table_row[i].style.minWidth = table_row[0].offsetWidth + "px";
+	}
 	sospiGraph.style.height = graph_form.offsetHeight / 100 * 85 - parseInt(getComputedStyle(sospiGraph,true).marginTop) + "px";
-	sospiGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(sospiGraph,true).marginRight) + "px";
+	//sospiGraph.style.width = graph_form.offsetWidth / 100 * 90 - parseInt(getComputedStyle(sospiGraph,true).marginRight) + "px";
+	sospiGraph.style.width = table_form.offsetWidth - table_row[0].offsetWidth - parseInt(getComputedStyle(sospiGraph,true).marginRight)+ "px";
 	sospiGraph_1.style.width = sospiGraph.offsetWidth + "px";
 	sospiGraph_1.style.height = sospiGraph.offsetHeight + "px";
-	for( var i = 0 ; i < table_row.length ; i++){
-		table_row[i].style.height = table_form.offsetHeight / 6 + "px";
-	}
+
 	for( var i = 1 ; i < table_cell.length ; i++){
 		table_cell[i].style.width = sospiGraph.offsetWidth / 4 + "px";
 	}
@@ -127,7 +139,7 @@ function start_graph(data_temp){
 		}
 	}
 
-	var max_value = parseInt( max_temp / 100 ) * 100 + 100;
+	var max_value = (parseInt( max_temp ) * 1.3).toFixed(0);
 
 	for( var i = 0 ; i < temp.length ; i ++){
 		temp[i] = max_value - temp[i];
@@ -177,7 +189,7 @@ function first_start_graph(temp_array){
 		}
 	}
 
-	var max_value = parseInt( max_temp / 100 ) * 100 + 100;
+	var max_value = (parseInt( max_temp ) * 1.3).toFixed(0);
 
 	for( var i = 0 ; i < temp.length ; i ++){
 		temp[i] = max_value - temp[i];
@@ -290,11 +302,13 @@ function get_rank(rank_array_temp){
 }
 
 
+
 function setting_table(max){
 	var max_temp = max;
 
 	for(var i = 0 ; i < table_row.length;i++){
-		table_row[i].innerHTML = max_temp / 5 * ( 5 - i) + " -";
+		var temp = Math.round(max_temp /4 * ( 4-i )/100 )* 100;
+		table_row[i].innerHTML = commify(temp) + " -&nbsp&nbsp";
 	}
 	if( term.value == "day"){
 		for(var i = 0 ; i < table_cell.length ; i++){
@@ -306,4 +320,14 @@ function setting_table(max){
 			table_cell[i].innerHTML = i * 42 + "h";
 		}
 	}
+}
+
+function commify(n) {
+  var reg = /(^[+-]?\d+)(\d{3})/;
+  n += '';
+
+  while (reg.test(n))
+    n = n.replace(reg, '$1' + ',' + '$2');
+
+  return n;
 }
