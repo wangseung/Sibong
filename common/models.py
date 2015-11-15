@@ -8,15 +8,19 @@ class UserProfile(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-class HaveStock(models.Model):
-    owner = models.ForeignKey(UserProfile)
-    mystock = models.ForeignKey('StockPrice')
-    buy_price = models.IntegerField(null=True)
-    count = models.IntegerField()
-
-
 class Stock(models.Model):
     StockItem = models.CharField(max_length=30,unique=True)
+
+class StockPrice(models.Model):
+    StockItem = models.ForeignKey('Stock')
+    StockPrice = models.IntegerField()
+    fluctuation = models.IntegerField(default=0)
+
+class HaveStock(models.Model):
+    owner = models.ForeignKey(UserProfile)
+    my_stock = models.ForeignKey('StockPrice')
+    buy_price = models.IntegerField(null=True)
+    count = models.IntegerField()
 
 class News(models.Model):
     content = models.CharField(max_length=2048)
@@ -31,15 +35,3 @@ class Sospi(models.Model):
     day = models.IntegerField(default=0)
     month = models.IntegerField(default=0)
     fluctuation = models.IntegerField(default=0)
-
-class StockPrice(models.Model):
-    StockItem = models.ForeignKey(Stock)
-    StockPrice = models.IntegerField()
-    fluctuation = models.IntegerField(default=0)
-
-
-
-#stock = HaveStock.objects.create(owner=UserProfile.objects.get(id=1),mystock='layer7',count=5)
-#user = UserProfile.objects.create(username='admin',usermoney=999999999999)
-#user.set_password('admina')
-#user.save()

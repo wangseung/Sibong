@@ -1,3 +1,4 @@
+from django.contrib.sites import requests
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
@@ -28,19 +29,19 @@ def stock_request(request):
             stocklist = StockPrice.objects.filter(StockItem=stockitem)
             stock = stocklist[len(stocklist)-1]
             user = UserProfile.objects.get(username=request.user.username)
-            stock_check = HaveStock.objects.filter(owner=user, mystock=stock)
+            stock_check = HaveStock.objects.filter(owner=user, my_stock=stock)
 
             if (stock.StockPrice * count) > user.usermoney:
                 return render_to_response('after_deal.html', context=RequestContext(request,{'price': stock.StockPrice*count,}))
             if stock_check.count() > 0:
                 count += stock_check[0].count
-                have = HaveStock.objects.get(owner=user, mystock=stock)
+                have = HaveStock.objects.get(owner=user, my_stock=stock)
                 have.count = count
                 user.usermoney -= stock_check[0].count * stock.StockPrice
                 user.save()
                 have.save()
             else:
-                HaveStock.objects.create(owner=user, mystock=stock,
+                HaveStock.objects.create(owner=user, my_stock=stock,
                                          count=count, buy_price=stock.StockPrice)
                 user.usermoney -= stock.StockPrice * count
                 user.save()
@@ -50,18 +51,18 @@ def stock_request(request):
             stocklist = StockPrice.objects.filter(StockItem=stockitem)
             stock = stocklist[len(stocklist)-1]
             user = UserProfile.objects.get(username=request.user.username)
-            stock_check = HaveStock.objects.filter(owner=user, mystock=stock)
+            stock_check = HaveStock.objects.filter(owner=user, my_stock=stock)
 
             if stock_check.count() > 0 and count <= stock_check[0].count:
-                have = HaveStock.objects.get(owner=user, mystock=stock)
-                user.usermoney += have.mystock.StockPrice * count
+                have = HaveStock.objects.get(owner=user, my_stock=stock)
+                user.usermoney += have.my_stock.StockPrice * count
                 have.count -= count
                 have.save()
                 user.save()
             else:
-                return HttpResponse()
+                return render_to_response('after_deal.html', context=RequestContext(request,{'count': count}))
         else:
-            return HttpResponse()
+            raise Http404()
 
     except:
         print('error')

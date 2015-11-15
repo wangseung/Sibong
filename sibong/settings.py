@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django_crontab',
     'common',
     'mypage',
+    'deal',
     'stock_item',
 )
 

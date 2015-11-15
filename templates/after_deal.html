@@ -25,10 +25,13 @@
 <!-- script end -->
 </head>
 <body>
-<wrap>
-    {% if request.user.usermoney < request.price %}
-        <script>alert("Your Money isn't enough to Buy this Stock")</script>
+    {% if request.user.usermoney < price %}
+        <script>alert("돈이 "+({{ price }}-{{ request.user.usermoney }})+"원 부족합니다! ㅠㅠ")</script>
+    {% elif count %}
+        <script>alert("갯수가 너무 많습니다!")</script>
     {% endif %}
+<wrap>
+
 	<header>
 		<div class = "logo_box">
 			<a href = "/after_login/"><img src = "/static/images/main/main_logo.png" alt = "메인로고입니다"/></a>

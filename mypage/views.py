@@ -13,7 +13,7 @@ def get_rank(request):
         have_stock = HaveStock.objects.filter(owner=i)
         money = i.usermoney
         for j in have_stock:
-            money += j.mystock.StockPrice * j.count
+            money += j.my_stock.StockPrice * j.count
         dic[i.username]=money
     sorted_dic = sorted(dic.items(), key=operator.itemgetter(1), reverse=True)
     for i in sorted_dic:
@@ -31,9 +31,9 @@ def get_account(request):
         if i.count <= 0:
             pass
         else:
-            sendlist.append(dict(item=str(i.mystock.StockItem.StockItem), past=i.buy_price,
-                                profit=int(i.mystock.StockPrice - i.buy_price),
-                                now=i.mystock.StockPrice, have=i.count))
+            sendlist.append(dict(item=str(i.my_stock.StockItem.StockItem), past=i.buy_price,
+                                profit=int(i.my_stock.StockPrice - i.buy_price),
+                                now=i.my_stock.StockPrice, have=i.count))
     send_list = str(sendlist).replace(chr(39),chr(34))
     return HttpResponse(send_list , content_type='application/json')
 
@@ -44,7 +44,7 @@ def get_earn(request):
     have_stock = HaveStock.objects.filter(owner=user)
     money = user.usermoney
     for i in have_stock:
-        money += i.mystock.StockPrice * i.count
+        money += i.my_stock.StockPrice * i.count
 
     earn = (money - user.old_usermoney) / user.old_usermoney * 100
     if earn < 0:
@@ -65,7 +65,7 @@ def get_value(request):
     have_stock = HaveStock.objects.filter(owner=user)
     money = user.usermoney
     for i in have_stock:
-        money += i.mystock.StockPrice * i.count
+        money += i.my_stock.StockPrice * i.count
     send_value.append(dict(value=money))
     send_value = str(send_value).replace(chr(39),chr(34))
     return HttpResponse(send_value, content_type='application/json')
