@@ -67,7 +67,9 @@ def get_value(request):
     have_stock = HaveStock.objects.filter(owner=user)
     money = user.usermoney
     for i in have_stock:
-        money += i.my_stock.StockPrice * i.count
+        stockprice_list = StockPrice.objects.filter(StockItem=i.my_stock.StockItem)
+        stockprice = stockprice_list[len(stockprice_list)-1]
+        money += stockprice.StockPrice * i.count
     send_value.append(dict(value=money))
     send_value = str(send_value).replace(chr(39),chr(34))
     return HttpResponse(send_value, content_type='application/json')
