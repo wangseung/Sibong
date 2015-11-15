@@ -13,7 +13,7 @@ def add_news():
     today = datetime.now()
     var_list = []
 
-    for i in range(0, 5):
+    for i in range(0, len(stocks)):
         rand_news = random.choice(news)
         content = stocks[i].StockItem + " " + rand_news.content
         price = stockp.filter(StockItem_id=stocks[i].id).order_by('-id')[0].StockPrice
