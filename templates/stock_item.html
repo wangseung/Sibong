@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿{% load staticfiles %}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset = "utf-8"/>
@@ -7,6 +8,7 @@
 <link rel ="stylesheet" type = "text/css" href = "/static/css/font.css"/>
 <link rel ="stylesheet" type = "text/css" href = "/static/css/default.css"/>
 <link rel ="stylesheet" type = "text/css" href = "/static/css/stock_item.css"/>
+    <link rel ="shortcut icon" type = "image/png" href = "{% static 'images/favicon.ico' %}"/>
 
 <!--mediaquery start-->
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -31,12 +33,12 @@
 			<a href = "/after_login/"><img src = "/static/images/main/main_logo.png" alt = "메인로고입니다"/></a>
 		</div>
 		<div class = "name_bar">
-				NEFUS
+            {{ stock }}
 		</div>
 		<div class = "some_box">
 			<img src = "/static/images/main/sibong.png" alt = "시봉이"/>
 			<div class = "my_button">
-				<img id = "logout" src = "/static/images/main/logout.png"/>
+				<a href = "/logout/"><img id = "logout" src = "/static/images/main/logout.png"/></a>
 				<a href = "/mypage/"><span>마이페이지</span></a>
 			</div>
 		</div>

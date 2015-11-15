@@ -213,7 +213,11 @@ function do_logout(){
 
 function link(){
 	var form_temp = document.createElement("form");
+<<<<<<< HEAD
 	form_temp.action = "//";
+=======
+	form_temp.action = "/stock_item/" + this.children.namedItem('item_code').value;
+>>>>>>> master
 	form_temp.method = "POST";
 
 	var out = "";

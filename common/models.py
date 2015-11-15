@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
-from django.utils import timezone
 
 
 class UserProfile(AbstractUser):
@@ -11,7 +10,7 @@ class UserProfile(AbstractUser):
 
 class HaveStock(models.Model):
     owner = models.ForeignKey(UserProfile)
-    mystock = models.CharField(max_length=50)
+    mystock = models.ForeignKey('StockPrice')
     buy_price = models.IntegerField(null=True)
     count = models.IntegerField()
 
@@ -24,10 +23,21 @@ class News(models.Model):
     variation = models.IntegerField()
 
 class Newslist(models.Model):
+    stock = models.CharField(max_length=20, default="")
     content = models.CharField(max_length=2048)
 
 class Sospi(models.Model):
     data = models.IntegerField()
+    day = models.IntegerField(default=0)
+    month = models.IntegerField(default=0)
+    fluctuation = models.IntegerField(default=0)
+
+class StockPrice(models.Model):
+    StockItem = models.ForeignKey(Stock)
+    StockPrice = models.IntegerField()
+    fluctuation = models.IntegerField(default=0)
+
+
 
 class StockPrice(models.Model):
     StockItem = models.ForeignKey(Stock)

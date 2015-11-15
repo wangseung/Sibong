@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('common', '0002_newslist'),
+        ('common', '0010_sospi_fluctuation'),
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='userprofile',
-            name='usermoney',
-            field=models.IntegerField(null=True),
+        migrations.AddField(
+            model_name='stockprice',
+            name='fluctuation',
+            field=models.IntegerField(default=0),
         ),
     ]

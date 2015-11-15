@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('common', '0002_newslist'),
+        ('common', '0012_newslist_stock'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='userprofile',
-            name='usermoney',
-            field=models.IntegerField(null=True),
+            model_name='havestock',
+            name='mystock',
+            field=models.ForeignKey(to='common.StockPrice'),
         ),
     ]

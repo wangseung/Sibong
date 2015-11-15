@@ -45,7 +45,11 @@ INSTALLED_APPS = (
     'django_crontab',
     'common',
     'mypage',
+<<<<<<< HEAD
     'deal',
+=======
+    'stock_item',
+>>>>>>> master
 )
 
 MIDDLEWARE_CLASSES = (
@@ -123,5 +127,5 @@ STATICFILES_DIRS = (
 )
 
 CRONJOBS = [
-    ('*/30 * * * *', 'common.cron.add_news')
+    ('*/1 * * * *', 'common.cron.add_news')
 ]
