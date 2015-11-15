@@ -75,6 +75,11 @@ function logout(){
 </script>
 </head>
 <body>
+    {% if request.user.is_anonymous %}
+
+        <meta http-equiv="REFRESH" content="0;url=/login/">
+
+    {% endif %}
 <a href = "/logout/"><img src = "{% static 'images/logout.png' %}" alt = "로그아웃 버튼" class = "logout" onclick="logout()"/></a>
 <wrap>
 	<container id = "template">

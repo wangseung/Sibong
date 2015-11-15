@@ -25,6 +25,11 @@
 <!-- script end -->
 </head>
 <body>
+    {% if request.user.is_anonymous %}
+
+        <meta http-equiv="REFRESH" content="0;url=/login/">
+
+    {% endif %}
     {% if request.user.usermoney < price %}
         <script>alert("돈이 "+({{ price }}-{{ request.user.usermoney }})+"원 부족합니다! ㅠㅠ")</script>
     {% elif count %}

@@ -27,6 +27,11 @@
 <!-- script end -->
 </head>
 <body>
+    {% if request.user.is_anonymous %}
+
+        <meta http-equiv="REFRESH" content="0;url=/login/">
+
+    {% endif %}
 <wrap>
 	<header>
 		<div class = "logo_box">
