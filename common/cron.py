@@ -17,10 +17,9 @@ def add_news():
         content = stocks[i].StockItem + " " + rand_news.content
         price = stockp.filter(StockItem_id=stocks[i].id).order_by('-id')[0].StockPrice
         var_list.append(rand_news.variation)
-        if price > 0:
-            price = int(price + rand_news.variation * 500)
-        else:
-            price = 1
+        price = int(price + rand_news.variation * 100)
+        if price < 0:
+            price=1000
         createprice = StockPrice.objects.create(StockPrice=price, StockItem_id=stocks[i].id, fluctuation=rand_news.variation)
         createprice.save()
 

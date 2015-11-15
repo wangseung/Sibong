@@ -20,10 +20,10 @@ def get_graph_data(request):
     id = Stock.objects.all().filter(StockItem=str(stockname))
     s = StockPrice.objects.all().filter(StockItem=int(id[0].id)).order_by('-id')
     if request.POST.get('data') == 'day':
-        for i in s[:48]:
+        for i in s[1:49]:
             data.append(i.StockPrice)
     elif request.POST.get('data') == 'week':
-        for i in s[:336]:
+        for i in s[1:337]:
             data.append(i.StockPrice)
     data.reverse()
     return HttpResponse(str(data), content_type='application/json')
@@ -33,11 +33,11 @@ def get_graph_data(request):
 def get_price_data(request):
     stock = request.path.split('/')[3]
     stock_id = Stock.objects.all().filter(StockItem=str(stock))[0].id
-    stockp = StockPrice.objects.all().filter(StockItem=int(stock_id)).order_by('-id')[0]
+    stockp = StockPrice.objects.all().filter(StockItem=int(stock_id)).order_by('-id')[1]
 
     price = stockp.StockPrice
     fluc = stockp.fluctuation
-    feel = ""
+    feel = "happy"
     pm = 0
     if fluc > 0:
         pm = 1

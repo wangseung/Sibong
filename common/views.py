@@ -80,10 +80,10 @@ def get_graph_data(request):
     data = []
     s = Sospi.objects.all().order_by('-id')
     if request.POST.get('data') == 'day':
-        for i in s[:48]:
+        for i in s[1:49]:
             data.append(i.data)
     elif request.POST.get('data') == 'week':
-        for i in s[:336]:
+        for i in s[1:337]:
             data.append(i.data)
     data.reverse()
     return HttpResponse(str(data), content_type='application/json')
