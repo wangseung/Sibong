@@ -52,11 +52,13 @@ def stock_request(request):
             stock = stocklist[len(stocklist)-1]
             user = UserProfile.objects.get(username=request.user.username)
             stock_check = list()
-            dic = {'data':1}
             havelist = HaveStock.objects.filter(owner=user)
             for i in havelist:
                 if i.my_stock.StockItem == stockitem:
                     stock_check.append(i)
+            if len(stock_check) <= 0:
+                return render_to_response('after_deal.html',
+                                          context=RequestContext(request,{'data': 1,'content':"개수가 부족합니다!"}))
             for i in stock_check:
                 if count <= i.count:
                     user.usermoney += stock.StockPrice * count
@@ -70,8 +72,6 @@ def stock_request(request):
                     return render_to_response('after_deal.html',
                                               context=RequestContext(request,{'data': 1,'content':"개수가 부족합니다!"}))
 
-            return render_to_response('after_deal.html',
-                                      context=RequestContext(request,{'data': 1,'content':"개수가 부족합니다!"}))
         else:
             raise Http404()
 
