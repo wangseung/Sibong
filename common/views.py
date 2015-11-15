@@ -129,13 +129,9 @@ def get_daily_data(request):
     sendlist = []
     t = date.today()
     for i in range(9):
-        sum = 0
-        s = Sospi.objects.all().filter(day=(t.day - i)).order_by('-id')
         price = Sospi.objects.all().filter(day=(t.day - i)).order_by('-id')[0].data
-
-        for j in s:
-            sum += j.fluctuation
-        fluc = int(round(sum / len(s)))
+        oldprice = Sospi.objects.all().filter(day=(t.day - (i+1))).order_by('-id')[0].data
+        fluc = int(round((price/oldprice)*100 - 100))
         pm = 0
         if fluc > 0:
             pm = 1
