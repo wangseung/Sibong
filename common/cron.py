@@ -1,5 +1,5 @@
 import random
-from datetime import date
+from datetime import datetime
 
 from common.models import Stock, StockPrice, News, Newslist, Sospi
 
@@ -9,7 +9,7 @@ def add_news():
     stocks = Stock.objects.all()
     stockp = StockPrice.objects.all()
     sospi = Sospi.objects
-    today = date.today()
+    today = datetime.now()
     var_list = []
 
     for i in range(0, 5):
@@ -17,9 +17,10 @@ def add_news():
         content = stocks[i].StockItem + " " + rand_news.content
         price = stockp.filter(StockItem_id=stocks[i].id).order_by('-id')[0].StockPrice
         var_list.append(rand_news.variation)
-        if price > 10000:
-            price = int(price + rand_news.variation * 1000)
-
+        if price > 0:
+            price = int(price + rand_news.variation * 500)
+        else:
+            price = 1
         createprice = StockPrice.objects.create(StockPrice=price, StockItem_id=stocks[i].id, fluctuation=rand_news.variation)
         createprice.save()
 

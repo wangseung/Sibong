@@ -15,7 +15,6 @@ def get_rank(request):
         for j in have_stock:
             money += j.mystock.StockPrice * j.count
         dic[i.username]=money
-
     sorted_dic = sorted(dic.items(), key=operator.itemgetter(1), reverse=True)
     for i in sorted_dic:
         users_money.append(dict(name=str(i[0]), asset=int(i[1])))
