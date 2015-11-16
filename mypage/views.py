@@ -21,7 +21,7 @@ def get_account(request):
     sendlist = list()
     for i in have_stock:
         stocklist = StockPrice.objects.filter(StockItem=i.my_stock.StockItem)
-        now_price = stocklist[len(stocklist)-1].StockPrice
+        now_price = stocklist[len(stocklist)-2].StockPrice
         if i.count <= 0:
             i.delete()
         else:

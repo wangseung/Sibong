@@ -27,7 +27,7 @@ def stock_request(request):
             count = int(request.POST.get("how_many", ""))
             stockitem = Stock.objects.get(StockItem=request.POST.get("item",""))
             stocklist = StockPrice.objects.filter(StockItem=stockitem)
-            stock = stocklist[len(stocklist)-1]
+            stock = stocklist[len(stocklist)-2]
             user = UserProfile.objects.get(username=request.user.username)
             stock_check = HaveStock.objects.filter(owner=user, my_stock=stock)
 
@@ -49,7 +49,7 @@ def stock_request(request):
             count = int(request.POST.get("how_many", ""))
             stockitem = Stock.objects.get(StockItem=request.POST.get("item",""))
             stocklist = StockPrice.objects.filter(StockItem=stockitem)
-            stock = stocklist[len(stocklist)-1]
+            stock = stocklist[len(stocklist)-2]
             user = UserProfile.objects.get(username=request.user.username)
             stock_check = list()
             havelist = HaveStock.objects.filter(owner=user)
