@@ -5,7 +5,7 @@ from django.contrib import auth
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.views.decorators.csrf import csrf_exempt
 
-from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi, StockPrice
+from common.models import UserProfile, HaveStock, News, Stock, Newslist, Sospi, StockPrice,Compare
 
 
 def login(request):
@@ -18,6 +18,11 @@ def login(request):
             user_create = UserProfile.objects.create(username=username, usermoney=10000000)
             user_create.set_password(password)
             user_create.save()
+
+            user_id = UserProfile.objects.filter(username=username)[0].id
+            compare_create = Compare.objects.create(owner_id=user_id, compare=0)
+            compare_create.save()
+
             results['error'] = "Success Register.\nPlease login"
             return render(request, 'index.html', results)
         if user is not None:
