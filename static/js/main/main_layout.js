@@ -20,6 +20,7 @@ var links;
 var items;
 var items_list;
 var item;
+var price;
 
 var sospi;
 var data_term;
@@ -49,12 +50,13 @@ function make_ingre(){
 	items = document.getElementsByClassName("items")[0];
 	items_list = document.getElementsByClassName("items_list")[0];
 	item = document.getElementsByClassName("item");
+	price = document.getElementsByClassName("price");
 
 	some_box = document.getElementsByClassName("some_box")[0];
 	sospi = document.getElementsByClassName("sospi")[0];
 	term = document.getElementById("term");
 	data_term = document.getElementsByClassName("data_term");
-
+	img = document.getElementsByClassName("img");
 
 	graph_form = document.getElementsByClassName("graph_form")[0];
 	sospiGraph = document.getElementById("sospiGraph");
@@ -292,15 +294,28 @@ function get_rank(rank_array_temp){
 				<span class = 'item_name'>\
 					<span>"+temp[i].item+"</span>\
 				</span>\
-			</div>\
-		";
+			";
+		out += "<div id = 'main_price_div'>"
+		out += "<span id = 'main_price' class = 'value' >"+temp[i].price+"</span>";
+
+		if(temp[i].up_down == 1){
+			out += "<img id = 'sibal' src = '/static/images/stock_item/"+temp[i].img+"_sibong.png' alt = '전일 대비 상승'/>";
+		}
+		else if(temp[i].up_down == 0){
+			out += "<img id = 'sibal' src = '/static/images/stock_item/"+temp[i].img+"_sibong.png' alt = '전일과 동일'/>";
+		}
+		else if(temp[i].up_down == -1){
+			out += "<img id = 'sibal' src = '/static/images/stock_item/"+temp[i].img+"_sibong.png'' alt = '전일 대비 하락'/>";
+		}
+
+		out += "</div>"
+		out+="</div>"
 
 		div_temp.innerHTML = out;
 
 		rank_list.appendChild(div_temp);
 	}
 }
-
 
 
 function setting_table(max){

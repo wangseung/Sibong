@@ -121,10 +121,18 @@ def get_rank(request):
     stocklist = []
     stockdict = {}
     for i in stocks:
-        stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[1].StockPrice
-        stockdict.update({i.StockItem: stockp})
+        stockp = StockPrice.objects.all().filter(StockItem_id=i.id).order_by('-id')[1]
+        stockdict.update({i.StockItem: [stockp.StockPrice, stockp.fluctuation]})
     for key in sorted(stockdict, key=stockdict.get, reverse=True):
-        stocklist.append(dict(item=str(key)))
+        pm = 0
+        feel = "happy"
+        if stockdict[key][1] > 0:
+            pm = 1
+            feel = "happy"
+        elif stockdict[key][1] < 0:
+            pm = -1
+            feel = "sad"
+        stocklist.append(dict(img=str(feel), item=str(key), price=str(stockdict[key][0]), up_down=str(pm)))
     send_stocklist = str(stocklist).replace(chr(39), chr(34))
     return HttpResponse(send_stocklist, content_type='application/json')
 
