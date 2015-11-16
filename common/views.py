@@ -132,7 +132,7 @@ def get_rank(request):
         elif stockdict[key][1] < 0:
             pm = -1
             feel = "sad"
-        stocklist.append(dict(img=str(feel), item=str(key), price=str(stockdict[key][0]), up_down=str(pm)))
+        stocklist.append(dict(img=str(feel), item=str(key), price=str(stockdict[key][1]), fluc=str(stockdict[key][0]), up_down=str(pm)))
     send_stocklist = str(stocklist).replace(chr(39), chr(34))
     return HttpResponse(send_stocklist, content_type='application/json')
 

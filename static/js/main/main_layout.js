@@ -57,7 +57,7 @@ function make_ingre(){
 	term = document.getElementById("term");
 	data_term = document.getElementsByClassName("data_term");
 	img = document.getElementsByClassName("img");
-
+	fluc = document.getElementsByClassName("fluc");
 	graph_form = document.getElementsByClassName("graph_form")[0];
 	sospiGraph = document.getElementById("sospiGraph");
 	sospiGraph_1 = document.getElementById("sospiGraph_1");
@@ -295,8 +295,8 @@ function get_rank(rank_array_temp){
 					<span>"+temp[i].item+"</span>\
 				</span>\
 			";
-		out += "<div id = 'main_price_div'>"
-		out += "<span id = 'main_price' class = 'value' >"+temp[i].price+"</span>";
+
+		out += "<div id = 'main_price_div'>";
 
 		if(temp[i].up_down == 1){
 			out += "<img id = 'sibal' src = '/static/images/stock_item/"+temp[i].img+"_sibong.png' alt = '전일 대비 상승'/>";
@@ -307,6 +307,17 @@ function get_rank(rank_array_temp){
 		else if(temp[i].up_down == -1){
 			out += "<img id = 'sibal' src = '/static/images/stock_item/"+temp[i].img+"_sibong.png'' alt = '전일 대비 하락'/>";
 		}
+
+		out += "<div id= 'main_fluc'>";
+		out += "<span class = 'value' >"+temp[i].price + "% </span>";
+		out += "</div>";
+
+		out += "<div id = 'main_price' >";
+		out += "<span class = 'value' >"+temp[i].fluc + " </span>";
+		out += "</div>";
+
+
+
 
 		out += "</div>"
 		out+="</div>"
